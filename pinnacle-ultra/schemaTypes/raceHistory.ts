@@ -1,5 +1,5 @@
 export default {
-  name: 'racehistory',
+  name: 'raceHistory',
   title: 'Race History',
   type: 'document',
   fields: [
