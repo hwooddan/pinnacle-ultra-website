@@ -368,6 +368,8 @@ header h1 {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     object-fit: cover;
     max-height: 500px;
+    top: 100px;             /* How far from the top of the screen it sits */
+    align-self: flex-start; /* Ensures it doesn't stretch to the height of the text */
 }
 
 /* The text side of the layout */
@@ -406,4 +408,12 @@ header h1 {
     font-size: 0.9rem;
     font-weight: bold;
     border: 1px solid #2d5a27;
+}
+
+/*media queries/* Mobile Optimization for the Bio page */
+@media (min-width: 768px) {
+    #author-image {
+        position: sticky;
+        top: 100px;
+    }
 }
