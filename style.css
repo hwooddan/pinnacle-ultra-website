@@ -357,21 +357,20 @@ header p {
 
     /* 2. FORCE the Blog Post to stay centered and vertical */
     .full-post-container {
-        display: block;       /* This "kills" any accidental flex-row from the parent */
-        max-width: 800px;     /* Keeps the text from stretching too wide */
-        margin: 120px auto;   /* Centers it: 120px top (for nav), auto sides */
-        padding: 0 40px;
-    }
+    max-width: 800px;      /* Keeps text readable on desktop */
+    margin: 0 auto;        /* Centers the whole article */
+    padding: 0 20px;       /* Adds a "gutter" so text doesn't touch the screen edge on mobile */
+    box-sizing: border-box; /* Includes padding in the width calculation */
+}
 
     /* 3. Make sure the Blog Image fills its container */
    .full-post-img {
-    width: 100%;
-    height: auto;          /* Let the height adjust naturally to the photo */
-    max-height: 500px;     /* Optional: prevents the photo from taking over the whole screen */
-    object-fit: contain;   /* Ensures the whole image is visible without cropping */
-    border-radius: 8px;
-    margin-bottom: 20px;
-    display: block;
+    width: 100%;           /* Forces image to take up 100% of the available width */
+    max-width: 100%;       /* Hard safety cap to prevent horizontal scrolling */
+    height: auto;          /* Maintains the original aspect ratio (no squishing) */
+    display: block;        /* Removes the tiny gap often found under images */
+    margin: 0 auto 20px;   /* Centers it and adds space before the title */
+    border-radius: 8px;    /* Matches your site's aesthetic */
 }
 }
 
