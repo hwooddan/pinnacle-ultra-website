@@ -330,14 +330,15 @@ header p {
     }
 
     /* 3. Make sure the Blog Image fills its container */
-    .full-post-img {
-        width: 100%;
-        height: auto;
-        max-height: 500px;
-        object-fit: cover;
-        position: relative;   /* Ensures it doesn't try to be "sticky" like Andrea's photo */
-        top: 0;
-    }
+   .full-post-img {
+    width: 100%;
+    height: auto;          /* Let the height adjust naturally to the photo */
+    max-height: 500px;     /* Optional: prevents the photo from taking over the whole screen */
+    object-fit: contain;   /* Ensures the whole image is visible without cropping */
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: block;
+}
 }
 
 @media (max-width: 767px) {

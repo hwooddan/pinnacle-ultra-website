@@ -29,7 +29,7 @@ if (blogFeed) {
                 <img src="${post.imageUrl}" alt="${post.title}" class="blog-img">
                 <div class="post-content">
                     <h2>${post.title}</h2>
-                    <p>${post.body && post.body[0] && post.body[0].children ? post.body[0].children[0].text.substring(0, 100) + "..." : ""}>
+                    <p>${post.body && post.body[0] && post.body[0].children ? post.body[0].children[0].text.substring(0, 100) + "..." : ""}</p>
                     <a href="post.html?slug=${post.slug}" class="btn-green">Read More</a>
                 </div>`;
             blogFeed.appendChild(postCard);
