@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 header h1 {
     color: hwb(120 90% 8%); 
     font-family: sans-serif;
