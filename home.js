@@ -2,7 +2,7 @@
    PINNACLE ULTRA: HOME PAGE SCRIPT
    ========================================== */
 
-const PROJECT_ID = "your_project_id"; // <-- Make sure your ID is here!
+const PROJECT_ID = "wpo056ht"; // <-- Make sure your ID is here!
 const DATASET = "production";
 
 // This query looks for your "Author" info instead of "Posts"
