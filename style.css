@@ -347,3 +347,63 @@ header h1 {
     color: #444;
     margin-bottom: 40px;
 }
+
+/*code for styling the bio page starts here*/
+
+/* Container for the whole Bio section */
+.bio-container {
+    max-width: 1000px;
+    margin: 80px auto;
+    display: flex;
+    flex-wrap: wrap; /* Allows it to stack on mobile */
+    gap: 40px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+/* Style for Andrea's Photo on the Bio page */
+#author-image {
+    flex: 1 1 350px; /* Grows/shrinks, but stays around 350px */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    object-fit: cover;
+    max-height: 500px;
+}
+
+/* The text side of the layout */
+.bio-content {
+    flex: 2 1 400px;
+}
+
+#author-name {
+    font-size: 3rem;
+    color: #2d5a27; /* Pinnacle Green */
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+#author-bio {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Style for those "Many Many More" race credits */
+.credentials-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.credential-tag {
+    background: #e8f5e9;
+    color: #2d5a27;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid #2d5a27;
+}
