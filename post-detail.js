@@ -33,16 +33,16 @@ if (slug) {
 
             // 2. INJECT CONTENT
             container.innerHTML = `
-                <img src="${result.imageUrl || ''}" class="full-post-img" alt="${result.title || 'Blog Post'}">
-                <h1>${result.title || 'Untitled Post'}</h1>
-                <div class="post-body-text">
-                    ${bodyHTML}
-                </div>
-                
-                <div class="post-footer">
-                    <a href="blog.html" class="btn-green btn-large">← Back to Ultra Ramblings</a>
-                </div>
-            `;
+    <img src="${result.imageUrl || ''}" class="full-post-img" alt="${result.title || 'Blog Post'}">
+    <h1>${result.title || 'Untitled Post'}</h1>
+    <div class="post-body-text">
+        ${bodyHTML}
+    </div>
+    
+    <div class="post-footer">
+        <a href="blog.html" class="btn-green btn-large">← Back to Ultra Ramblings</a>
+    </div>
+`;
         } else {
             document.getElementById('post-content').innerHTML = "<p>Post not found.</p>";
         }
