@@ -25,3 +25,31 @@ fetch(URL)
       console.error("Connection Failed:", err);
       document.getElementById("home-title").innerText = "Check CORS Settings";
   });
+
+  const REVIEWS_QUERY = encodeURIComponent(`*[_type == "review"] | order(displayOrder asc){
+  authorName,
+  raceCompleted,
+  quote,
+  "imageUrl": authorImage.asset->url
+}`);
+
+const REVIEWS_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${REVIEWS_QUERY}`;
+
+fetch(REVIEWS_URL)
+  .then(res => res.json())
+  .then(({ result }) => {
+    const container = document.getElementById('reviews-container');
+    if (result && result.length > 0) {
+        container.innerHTML = result.map(review => `
+    <div class="review-card">
+        ${review.imageUrl 
+            ? `<img src="${review.imageUrl}?w=160&h=160&fit=crop" class="review-avatar" alt="${review.authorName}">` 
+            : `<div class="review-avatar" style="background: var(--brand-green-light); display: flex; align-items: center; justify-content: center;"><i class="fas fa-user" style="color: var(--brand-green-deep)"></i></div>`
+        }
+        <p class="review-quote">"${review.quote}"</p>
+        <h4 class="review-author">${review.authorName}</h4>
+        <span class="review-race">${review.raceCompleted || 'Ultra Runner'}</span>
+    </div>
+`).join('');
+    }
+  });

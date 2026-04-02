@@ -391,3 +391,79 @@ header p {
         height: 180px;
     }
 }
+
+/* ==========================================
+   ZONE 8: REVIEWS & TESTIMONIALS
+   ========================================== */
+
+.reviews-section {
+    padding: 80px 5%;
+    background-color: var(--bg-main);
+    text-align: center;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--brand-green-deep);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.review-card {
+    background: var(--card-bg);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.review-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(46, 125, 50, 0.15); /* Subtle green glow */
+}
+
+.review-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--brand-green-light);
+}
+
+.review-quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.review-author {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--brand-green-deep);
+    font-weight: 800;
+}
+
+.review-race {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
