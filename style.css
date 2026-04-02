@@ -207,21 +207,28 @@ header p {
    ZONE 5: BLOG STYLES
    ========================================== */
 /* 2. FORCE the Blog Post to stay centered and vertical */
-    .full-post-container {
-    max-width: 800px;      /* Keeps text readable on desktop */
-    margin: 0 auto;        /* Centers the whole article */
-    padding: 0 20px;       /* Adds a "gutter" so text doesn't touch the screen edge on mobile */
-    box-sizing: border-box; /* Includes padding in the width calculation */
+   .full-post-container {
+    max-width: 800px;      /* Keeps the text column professional and readable */
+    margin: 100px auto;    /* Centers it and clears the fixed nav */
+    padding: 0 20px;       
+    width: 100%;           
 }
 
-    /* 3. Make sure the Blog Image fills its container */
-   .full-post-img {
-    width: 100%;           /* Forces image to take up 100% of the available width */
-    max-width: 100%;       /* Hard safety cap to prevent horizontal scrolling */
-    height: auto;          /* Maintains the original aspect ratio (no squishing) */
-    display: block;        /* Removes the tiny gap often found under images */
-    margin: 0 auto 20px;   /* Centers it and adds space before the title */
-    border-radius: 8px;    /* Matches your site's aesthetic */
+.full-post-img {
+    width: 70%;            /* Reducued by 30% on larger screens */
+    max-width: 100%;       /* Safety cap for mobile */
+    height: auto;          
+    display: block;
+    margin: 0 auto 30px;   /* "auto" on left/right keeps it centered */
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+/* MOBILE OVERRIDE: Ensure it still looks good on small screens */
+@media (max-width: 767px) {
+    .full-post-img {
+        width: 100%;       /* Returns to full width on mobile so it's not tiny */
+    }
 }
 
 .blog-feed {
