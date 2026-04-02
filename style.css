@@ -249,11 +249,13 @@ header p {
     padding: 20px;
 }
 
-#author-image {
-    width: 50%;
+    #author-image {
+    width: 100%;       /* Fills the screen on mobile */
+    max-width: 100%;   /* Safety cap */
+    height: auto;      /* Keeps proportions perfect */
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     object-fit: cover;
+    display: block;
 }
 
 #author-name {
@@ -290,12 +292,15 @@ header p {
         align-items: flex-start;
     }
 
+    @media (min-width: 768px) {
     #author-image {
-        flex: 0 0 400px;         /* Fixed width on PC */
-        position: sticky;        /* Pins image while text scrolls */
+        flex: 0 0 450px;  /* This tells the PC: "Stay exactly 450px wide" */
+        width: 450px;     /* Double-ensures it doesn't grow to 100% */
+        position: sticky;
         top: 100px;
         align-self: flex-start;
     }
+}
 
     .bio-content {
         flex: 1;
