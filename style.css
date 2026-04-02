@@ -292,19 +292,18 @@ header p {
     transform: translateY(0);
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
-}
 
 /* ==========================================
    ZONE 6: BIO PAGE (ABOUT.HTML)
    ========================================== */
 
 .bio-container {
-    max-width: 1100px;
+    max-width: 1200px;           /* Increased from 1000px for a larger feel */
     margin: 120px auto 60px;
-    padding: 0 20px;
     display: flex;
-    flex-direction: column; /* Stacked for mobile */
+    flex-direction: column; 
     gap: 40px;
+    padding: 20px;
 }
 
 #author-image {
@@ -312,34 +311,69 @@ header p {
     height: auto;
     border-radius: 15px;
     object-fit: cover;
-    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.bio-content {
-    flex: 1;
+#author-name {
+    font-size: 3rem;             /* Larger title */
+    color: var(--brand-green-deep);
+    margin-top: 0;
+}
+
+#author-bio {
+    font-size: 1.25rem;          /* Larger, readable bio text */
+    line-height: 1.8;
+    color: var(--text-main);
+    margin-bottom: 30px;
+}
+
+/* THE CREDENTIAL "PILLS" */
+.credentials-list {
+    display: flex;
+    flex-wrap: wrap;             /* Allows them to wrap to a new line */
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.credential-tag {
+    background: var(--brand-green-light);
+    color: var(--brand-green-deep);
+    padding: 8px 20px;           /* More "padding" makes them look like containers */
+    border-radius: 50px;         /* Pill shape */
+    font-size: 0.95rem;
+    font-weight: bold;
+    border: 2px solid var(--brand-green-deep);
+    transition: all 0.3s ease;
+}
+
+.credential-tag:hover {
+    background: var(--brand-green-deep);
+    color: white;
+    transform: translateY(-2px);
 }
 
 /* ==========================================
-   ZONE 7: MEDIA QUERIES (DESKTOP FIX)
+   ZONE 7: MEDIA QUERIES (DESKTOP)
    ========================================== */
 
 @media (min-width: 768px) {
     .bio-container {
-        flex-direction: row;      /* Side-by-side on PC */
-        align-items: flex-start;  /* Prevents text from stretching the image */
+        flex-direction: row; 
+        align-items: flex-start;
+        gap: 80px;               /* Larger gap for a premium feel */
     }
 
     #author-image {
-        flex: 0 0 400px;          /* Forces the image to stay exactly 400px wide */
-        width: 400px;
-        position: sticky;         /* Keeps image in view as you scroll the text */
-        top: 100px;               /* Space from the top of the screen */
+        flex: 0 0 500px;         /* Increased from 400px to make image larger */
+        width: 500px;
+        position: sticky;
+        top: 110px;
     }
 
     .bio-content {
-        padding-left: 40px;       /* Nice gap between image and text */
-        max-width: 650px;         /* Prevents text from spreading too wide */
+        flex: 1;
     }
+}
 }
 /* MOBILE ONLY (Screens smaller than 767px) */
 @media (max-width: 767px) {
