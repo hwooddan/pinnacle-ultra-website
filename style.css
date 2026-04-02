@@ -329,20 +329,20 @@ header p {
 
 .race-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin-bottom: 40px;
+    /* This ensures at least one column exists even if there is only one race */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px;
+    margin: 20px 0;
+    min-height: 150px; /* Forces the container to stay open */
 }
 
 .race-tile {
     position: relative;
-    height: 150px;
-    border-radius: 10px;
+    height: 200px; /* CRITICAL: Tiles must have a height to be visible */
+    background-color: var(--brand-green-deep);
+    border-radius: 12px;
     overflow: hidden;
-    background: var(--brand-green-deep);
     color: white;
-    cursor: pointer;
-    transition: transform 0.3s ease;
 }
 
 .race-tile:hover {
@@ -353,8 +353,7 @@ header p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.6; /* Darkens image so text pops */
-    transition: opacity 0.3s;
+    display: block;
 }
 
 .race-tile:hover .race-tile-img {
