@@ -1,27 +1,38 @@
-const PROJECT_ID = "wpo056ht";
+/* post-details.js - SYNCED WITH POST SCHEMA */
+const PROJECT_ID = "wpo056ht"; 
 const DATASET = "production";
 
-// 1. Grab the Slug from the URL (?s=slug-name)
+// 1. Get the slug from the URL (e.g., post.html?slug=my-run)
 const urlParams = new URLSearchParams(window.location.search);
-const slug = urlParams.get('s');
+const slug = urlParams.get("slug");
 
 if (slug) {
-    const QUERY = encodeURIComponent(`*[_type == "post" && slug.current == "${slug}"][0]{title, "imageUrl": mainImage.asset->url, body}`);
+    // 2. We ask Sanity for the post that matches this slug
+    const QUERY = encodeURIComponent(`*[_type == "post" && slug.current == "${slug}"][0]{
+        title,
+        body,
+        "imageUrl": mainImage.asset->url + "?w=1200&q=85&auto=format"
+    }`);
+
     const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
 
     fetch(URL)
-        .then(res => res.json())
-        .then(({ result }) => {
-            if (result) {
-                document.getElementById('post-content').innerHTML = `
-                    <img src="${result.imageUrl}" class="full-post-img">
-                    <h1>${result.title}</h1>
-                    <div class="post-body-text">${result.body}</div>
-                    
-<div style="margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;">
-    <a href="blog.html" class="btn-green">← Back to Main Blog</a>
-</div>
-                `;
-            }
-        });
+      .then((res) => res.json())
+      .then(({ result }) => {
+        if (result) {
+            // 3. Target the existing container in post.html
+            const container = document.getElementById('post-content');
+            
+            // 4. Inject the content
+            // We build the HTML structure inside the container
+            container.innerHTML = `
+                <img src="${result.imageUrl}" class="full-post-img" alt="${result.title}" style="width:100%; height:auto; border-radius:8px;">
+                <h1>${result.title}</h1>
+                <div class="post-body-text">
+                    ${typeof result.body === 'string' ? result.body : 'Click "Read More" to view content.'}
+                </div>
+            `;
+        }
+      })
+      .catch(err => console.error("Post Details Error:", err));
 }
