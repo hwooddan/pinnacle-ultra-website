@@ -182,8 +182,8 @@ header p {
 }
 
 .home-hero-img {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid var(--brand-green-deep);
@@ -250,7 +250,7 @@ header p {
 }
 
 #author-image {
-    width: 100%;
+    width: 50%;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     object-fit: cover;
