@@ -327,6 +327,73 @@ header p {
     margin-bottom: 30px;
 }
 
+.race-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.race-tile {
+    position: relative;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--brand-green-deep);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.race-tile:hover {
+    transform: scale(1.03);
+}
+
+.race-tile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6; /* Darkens image so text pops */
+    transition: opacity 0.3s;
+}
+
+.race-tile:hover .race-tile-img {
+    opacity: 0.2; /* Dims further on hover to show details */
+}
+
+.race-tile-basic {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+.race-tile-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    background: rgba(45, 90, 39, 0.9); /* Your deep green */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.race-tile:hover .race-tile-details {
+    opacity: 1; /* Revealed on hover */
+}
+
+.race-link {
+    color: var(--brand-green-light);
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
 /* THE CREDENTIAL "PILLS" */
 .credentials-list {
     display: flex;
