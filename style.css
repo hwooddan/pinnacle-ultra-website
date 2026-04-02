@@ -236,6 +236,28 @@ header p {
     padding: 20px;
 }
 
+.post-footer {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+    text-align: center; /* Centers the button */
+}
+
+/* This makes it match your existing .btn-green style but bigger */
+.btn-large {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-large:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    background-color: #1b5e20; /* Darker green on hover */
+}
+
 /* ==========================================
    ZONE 6: BIO PAGE (ABOUT.HTML)
    ========================================== */

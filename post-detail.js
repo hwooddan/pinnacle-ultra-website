@@ -20,19 +20,25 @@ if (slug) {
       .then((res) => res.json())
       .then(({ result }) => {
         if (result) {
-            // 3. Target the existing container in post.html
             const container = document.getElementById('post-content');
             
-            // 4. Inject the content
-            // We build the HTML structure inside the container
+            // Map the body text safely
+            const bodyText = result.body && result.body[0] && result.body[0].children 
+                             ? result.body[0].children[0].text 
+                             : "Content coming soon...";
+
+            // Inject content AND the "Back to Blog" button at the bottom
             container.innerHTML = `
-                <img src="${result.imageUrl}" class="full-post-img" alt="${result.title}" style="width:100%; height:auto; border-radius:8px;">
+                <img src="${result.imageUrl}" class="full-post-img" alt="${result.title}">
                 <h1>${result.title}</h1>
                 <div class="post-body-text">
-                    ${typeof result.body === 'string' ? result.body : 'Click "Read More" to view content.'}
+                    ${bodyText}
+                </div>
+                
+                <div class="post-footer">
+                    <a href="blog.html" class="btn-green btn-large">← Back to Ultra Ramblings</a>
                 </div>
             `;
         }
       })
       .catch(err => console.error("Post Details Error:", err));
-}
