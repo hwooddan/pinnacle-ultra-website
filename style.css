@@ -1,0 +1,345 @@
+header h1 {
+    color: hwb(120 90% 8%); 
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 3em;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+
+}
+
+header p{
+    color: hwb(120 65% 29%);
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+}
+
+nav {
+   
+    background: linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+    padding: 13px 0;
+    position: fixed;      
+    top: 0;
+    z-index: 9999;          /* Ensures it stays on top of other images */
+    width: 100%;
+}
+
+
+
+.nav-scrolled {
+
+    /* 0.8 means 80% visible. Lower it to 0.5 for a "ghostly" look */
+    background-color: rgba(166, 212, 166, 0.5)!important; 
+    
+    /* This adds a "Frosted Glass" effect (standard for premium brands) */
+    
+    -webkit-backdrop-filter: blur(8px); /* For Safari support */
+    backdrop-filter: blur(8px); 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    transition: background-color 0.5s ease;
+   
+}
+
+.nav-container {
+    max-width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Pushes Logo to left, Links to right */
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo-text {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;              /* Spacing between the links */
+    list-style: none;
+    margin: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;  /* Removes the underline */
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: hwb(120 65% 29%); /* Changes to your brand green on hover */
+}
+
+ 
+ .about {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center;    /* Centers items horizontally */
+    text-align: center;     /* Centers the text inside the p and h2 tags */
+}
+
+.about img {
+    width: 300px;           /* Set a specific size */
+    height: auto;           /* Keeps the image proportions correct */
+    border-radius: 10px;    /* Optional: looks great for coaching sites! */
+
+}
+
+header {
+    /* This creates space at the top of the mountain image */
+    padding-top: 70px; 
+    
+    /* Keep your existing mountain background code here */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), 
+            url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000');
+    background-size: cover;
+    min-height: 80vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* This centers the logo/text in the remaining space */
+}
+
+.header-content {
+    margin-bottom: auto;
+    margin-top: 0;            /* Vertically centers the title */
+}
+
+header h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.header-logo {
+    
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.9)); /* Adds a soft "lift" from the background */
+    transition: opacity 0.3s; /* Smoothly changes if we add a hover effect later */
+    display: block;
+    width: 300px;          /* Try 300px or 400px—adjust until Andrea loves it! */
+    max-width: 80%;        /* Safety net: it will never be wider than 80% of the screen */
+    height: auto;          /* Keeps it from looking squished */
+    margin: 0 auto 20px;   /* Centers it and adds 20px of space before the H1 */
+}
+    
+    
+.header-logo:hover {
+    opacity: 1;
+}   
+
+/* This triggers for screens smaller than 768px (tablets and phones) */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column; /* Stacks the logo on top of the links */
+        padding: 10px 0;
+        gap: 10px;
+    }
+
+    nav ul {
+        gap: 15px;             /* Tightens the space between Home, Blog, Insta */
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;     /* Makes text slightly smaller for small screens */
+    }
+
+    .header-logo {
+        width: 100px;          /* Shrinks the logo so it doesn't eat the whole screen */
+    }
+}
+
+/* styling for the home page main content */
+
+/* The Outer Wrapper (The Background) */
+.welcome-section {
+    display: flex;
+    justify-content: center; /* Centers the card horizontally */
+    align-items: center;    /* Centers the card vertically if needed */
+    padding: 60px 20px;
+    background-color: #f4f4f4; /* A light grey so the white card pops */
+}
+
+/* The Floating Card (The 2/3 Container) */
+.welcome-card {
+    background: white;
+    width: 100%;
+    max-width: 800px; /* This ensures it stays around 2/3 of a standard screen */
+    padding: 40px;
+    border-radius: 15px; /* Rounded corners for a modern look */
+    text-align: center;
+    
+    /* THE HOVER EFFECT: A subtle shadow makes it look lifted */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    
+    /* Optional: Transition makes it feel premium if we add hover effects later */
+    transition: transform 0.3s ease;
+}
+
+.home-hero-img {
+    width: 300px;       /* Fixed width so it doesn't take over the world */
+    height: 300px;      /* Matches width for a perfect circle */
+    object-fit: cover;  /* Prevents the photo from looking squashed */
+    border-radius: 50%; /* Makes the profile photo a circle */
+    margin-bottom: 20px;
+    border: 3px solid #2d5a27; /* Adds a nice brand-colored ring */
+}
+
+#home-title {
+    display: flex;
+    flex-direction: column; /* Stacks the two parts vertically */
+    align-items: center;    /* Keeps them centered in the card */
+    gap: 5px;              /* Space between the two lines */
+    margin-top: 10px;
+    color: #2d5a27;         /* Your brand green */
+    font-size: 2.2rem;      /* Slightly larger for impact */
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+#home-title span {
+    display: block;      /* This ensures it stays on its own line */
+    font-size: 1.2rem;   /* Makes it smaller than the main title */
+    color: #666;         /* A subtle grey */
+    font-style: italic;  /* Adds a bit of class */
+    margin-top: 8px;     /* A little breathing room */
+    font-weight: normal; /* Removes the "Bold" from the subtitle */
+}
+
+
+#home-text {
+    line-height: 1.6;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+/* styling for the blog page main content */
+
+/* The container for all posts */
+.blog-feed {
+    display: grid;
+    /* This forces two equal columns on desktop */
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; /* Increased gap for a "breathing" premium feel */
+    padding: 40px 5%;
+    max-width: 1100px; /* Slightly narrower looks more "boutique" */
+    margin: 0 auto;
+}
+
+/* Mobile Fix: Drop back to 1 column so it's not tiny on phones */
+@media (max-width: 768px) {
+    .blog-feed {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Individual Post Card */
+
+.post-card {
+    display: block;
+    flex-direction: column; /* Stack image on top of text */
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    height: auto; /* Let it be as tall as it needs to be */
+    min-height: 450px; /* Ensures the card looks substantial */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    width: 100%;
+    overflow: hidden; /* Ensures the image doesn't spill out of the card */
+}
+
+.post-card:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+.blog-img {
+    width: 100%;
+    /* 4:3 is a taller "Photography" ratio than 16:9 widescreen */
+    aspect-ratio: 4 / 3; 
+    object-fit: cover;
+    /* Pins the focus to the top 20% of the photo (the face/hat area) */
+    object-position: center 20%; 
+    display: block;
+}
+
+.post-content {
+    padding: 20px;
+    flex-grow: 1; /* Ensures the "Read More" button stays at the bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post-content h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.post-content p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.btn-green {
+    display: inline-block;
+    background-color: hwb(120 65% 29%); /* Your brand green */
+    color: white;
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 50px; /* Rounded pill shape looks more modern */
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease; /* Smooths the color and size change */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-green:hover {
+    background-color: hwb(120 40% 45%); /* A slightly deeper, richer green */
+    transform: translateY(-3px) scale(1.05); /* Lifts and grows slightly */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    color: white;
+}
+
+.full-post-container {
+    max-width: 800px; /* Keeps the lines of text from getting too wide to read */
+    margin: 120px auto 60px; /* Space for nav + breathing room at bottom */
+    padding: 0 25px;
+    font-family: 'Inter', sans-serif; /* Or your preferred clean font */
+}
+
+.full-post-img {
+    width: 100%;
+    max-height: 500px; /* Limits the height so it's not overwhelming */
+    object-fit: cover;  /* Keeps it crisp within those dimensions */
+    object-position: center 20%; 
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.full-post-container h1 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.post-body-text {
+    line-height: 1.8;
+    font-size: 1.15rem;
+    color: #444;
+    margin-bottom: 40px;
+}
