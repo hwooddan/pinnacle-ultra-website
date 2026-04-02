@@ -1,88 +1,68 @@
-// 1. Navigation Scroll Effect
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-        nav.classList.add('nav-scrolled');
-    } else {
-        nav.classList.remove('nav-scrolled');
-    }
-});
+/* ==========================================
+   PINNACLE ULTRA: MAIN BLOG FEED SCRIPT
+   ========================================== */
 
-// 2. Global Sanity Configuration
+// 1. YOUR SANITY CONFIGURATION
+// Replace "your_project_id" with your actual Sanity ID from your dashboard
 const PROJECT_ID = "wpo056ht"; 
 const DATASET = "production";
 
-// --- BLOG FEED LOGIC ---
-const BLOG_QUERY = encodeURIComponent('*[_type == "post"]{title, "slug": slug.current, "imageUrl": mainImage.asset->url, body}');
-const BLOG_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${BLOG_QUERY}`;
+// 2. THE OPTIMIZED QUERY
+// We add "?w=800&q=75&auto=format" to shrink images and save your Vercel bandwidth!
+const QUERY = encodeURIComponent(`*[_type == "post"]{
+  title,
+  "slug": slug.current,
+  "imageUrl": image.asset->url + "?w=800&q=75&auto=format",
+  description
+}`);
 
-function fetchPosts() {
+// 3. CONSTRUCT THE FULL API URL
+const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+// 4. FETCH DATA FROM SANITY
+fetch(URL)
+  .then((response) => {
+    // Check if the trail is open (API is responding)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then(({ result }) => {
+    // Find the spot on the page where the blog cards will live
     const blogFeed = document.querySelector(".blog-feed");
-    // Only run this if the blog-feed container actually exists on the page
-    if (!blogFeed) return; 
 
-    fetch(BLOG_URL)
-        .then((res) => res.json())
-        .then(({ result }) => {
-            if (!result || result.length === 0) return;
+    // Only proceed if we actually found some posts
+    if (result && result.length > 0) {
+      // Clear any "Loading..." text or old content
+      blogFeed.innerHTML = "";
 
-            blogFeed.innerHTML = result.map(post => {
-                const img = post.imageUrl || 'https://via.placeholder.com/400x300?text=Pinnacle+Ultra';
-                const slug = post.slug || '#';
-                const bodyPreview = typeof post.body === 'string' ? post.body.substring(0, 100) + '...' : 'New expert waffle from Andrea...';
+      // Loop through each post and build the card
+      result.forEach((post) => {
+        const postCard = document.createElement("div");
+        postCard.classList.add("post-card");
 
-                return `
-                    <article class="post-card">
-                        <img src="${img}" class="blog-img" alt="${post.title}">
-                        <div class="post-content">
-                            <h2>${post.title}</h2>
-                            <p>${bodyPreview}</p>
-                            <a href="post.html?s=${slug}" class="btn-green">Read More</a>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-        })
-        .catch(err => console.error("Error fetching Sanity posts:", err));
-}
+        // Building the HTML structure for the card
+        postCard.innerHTML = `
+            <img src="${post.imageUrl}" alt="${post.title}" class="blog-img" loading="lazy">
+            <div class="post-content">
+                <h2>${post.title}</h2>
+                <p>${post.description}</p>
+                <a href="post.html?slug=${post.slug}" class="btn-green">Read More</a>
+            </div>
+        `;
 
-// --- HOME PAGE LOGIC ---
-const HOME_QUERY = encodeURIComponent('*[_type == "homePage"][0]{welcomeTitle, welcomeText, "imageUrl": profileImage.asset->url}');
-const HOME_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${HOME_QUERY}`;
-
-function fetchHomeContent() {
-    // Only run if we are on index.html
-    if (!document.getElementById('home-title')) return;
-
-    fetch(HOME_URL)
-        .then(res => res.json())
-        .then(({ result }) => {
-            if (result) {
-                // 1. Handle the Split Title
-                if (result.welcomeTitle && result.welcomeTitle.includes(' - ')) {
-                    const parts = result.welcomeTitle.split(' - ');
-                    document.getElementById('home-title').innerHTML = `
-                        ${parts[0]} 
-                        <span>${parts[1]}</span>
-                    `;
-                } else {
-                    document.getElementById('home-title').innerText = result.welcomeTitle || '';
-                }
-
-                // 2. Handle the Welcome Text
-                if(document.getElementById('home-text')) {
-                    document.getElementById('home-text').innerText = result.welcomeText;
-                }
-
-                // 3. Handle the Image
-                if(document.getElementById('home-image')) {
-                    document.getElementById('home-image').src = result.imageUrl;
-                }
-            } // This closes "if (result)"
-        })
-        .catch(err => console.error("Error loading home content:", err));
-}
-
-// Initialize both
-fetchPosts();
-fetchHomeContent();
+        // Add the finished card to the feed
+        blogFeed.appendChild(postCard);
+      });
+    } else {
+      blogFeed.innerHTML = "<p>No trail stories found yet. Check back soon!</p>";
+    }
+  })
+  .catch((err) => {
+    console.error("Trail blocked by error:", err);
+    const blogFeed = document.querySelector(".blog-feed");
+    if (blogFeed) {
+      blogFeed.innerHTML = "<p>Sorry, we couldn't load the blog posts right now.</p>";
+    }
+  });
