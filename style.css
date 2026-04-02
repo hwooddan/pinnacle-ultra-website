@@ -313,6 +313,33 @@ header p {
 }
 
 /* MOBILE FIXES */
+@media (min-width: 768px) {
+    /* 1. Keep the Bio side-by-side */
+    .bio-container {
+        display: flex;
+        flex-direction: row;
+        gap: 60px;
+    }
+
+    /* 2. FORCE the Blog Post to stay centered and vertical */
+    .full-post-container {
+        display: block;       /* This "kills" any accidental flex-row from the parent */
+        max-width: 800px;     /* Keeps the text from stretching too wide */
+        margin: 120px auto;   /* Centers it: 120px top (for nav), auto sides */
+        padding: 0 40px;
+    }
+
+    /* 3. Make sure the Blog Image fills its container */
+    .full-post-img {
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        object-fit: cover;
+        position: relative;   /* Ensures it doesn't try to be "sticky" like Andrea's photo */
+        top: 0;
+    }
+}
+
 @media (max-width: 767px) {
     .nav-container {
         flex-direction: column;
