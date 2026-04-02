@@ -359,7 +359,7 @@ header h1 {
     gap: 40px;
     padding: 20px;
     align-items: flex-start;
-    overflow-x: hidden; 
+    overflow-x: visible; 
     box-sizing: border-box;
 }
 
@@ -423,9 +423,11 @@ header h1 {
 
     /* Give the image its specific spot on the left */
     #author-image {
-        flex: 0 0 400px; /* Forces it to stay 400px wide on PC */
+        flex: 0 0 400px;
         position: sticky;
-        top: 40px;
+        top: 40px; /* Adjust this if you have a fixed header! */
+        align-self: flex-start; /* CRITICAL: Prevents stretching */
+        height: auto;
     }
 
     /* Give the text the rest of the space */
