@@ -206,6 +206,23 @@ header p {
 /* ==========================================
    ZONE 5: BLOG STYLES
    ========================================== */
+/* 2. FORCE the Blog Post to stay centered and vertical */
+    .full-post-container {
+    max-width: 800px;      /* Keeps text readable on desktop */
+    margin: 0 auto;        /* Centers the whole article */
+    padding: 0 20px;       /* Adds a "gutter" so text doesn't touch the screen edge on mobile */
+    box-sizing: border-box; /* Includes padding in the width calculation */
+}
+
+    /* 3. Make sure the Blog Image fills its container */
+   .full-post-img {
+    width: 100%;           /* Forces image to take up 100% of the available width */
+    max-width: 100%;       /* Hard safety cap to prevent horizontal scrolling */
+    height: auto;          /* Maintains the original aspect ratio (no squishing) */
+    display: block;        /* Removes the tiny gap often found under images */
+    margin: 0 auto 20px;   /* Centers it and adds space before the title */
+    border-radius: 8px;    /* Matches your site's aesthetic */
+}
 
 .blog-feed {
     display: grid;
@@ -316,71 +333,48 @@ header p {
 }
 
 /* ==========================================
-   ZONE 7: MEDIA QUERIES (DESKTOP)
+   ZONE 7: MEDIA QUERIES (CLEANED UP)
    ========================================== */
 
+/* TABLET & DESKTOP (Screens 768px and wider) */
 @media (min-width: 768px) {
-    /* Bio Page Desktop View */
+    
+    /* Bio Page: Side-by-Side Layout */
     .bio-container {
-        flex-direction: row;     /* Side-by-side */
+        flex-direction: row; 
         align-items: flex-start;
+        gap: 60px;
     }
 
-    @media (min-width: 768px) {
     #author-image {
-        flex: 0 0 450px;  /* This tells the PC: "Stay exactly 450px wide" */
-        width: 450px;     /* Double-ensures it doesn't grow to 100% */
+        flex: 0 0 450px;  /* Keeps image from growing too big on PC */
+        width: 450px;
         position: sticky;
         top: 100px;
         align-self: flex-start;
     }
-}
 
     .bio-content {
         flex: 1;
         padding-left: 20px;
     }
 
+    /* Nav: Horizontal Links */
     .nav-container {
         flex-direction: row;
     }
 }
 
-/* MOBILE FIXES */
-@media (min-width: 768px) {
-    /* 1. Keep the Bio side-by-side */
-    .bio-container {
-        display: flex;
-        flex-direction: row;
-        gap: 60px;
-    }
-
-    /* 2. FORCE the Blog Post to stay centered and vertical */
-    .full-post-container {
-    max-width: 800px;      /* Keeps text readable on desktop */
-    margin: 0 auto;        /* Centers the whole article */
-    padding: 0 20px;       /* Adds a "gutter" so text doesn't touch the screen edge on mobile */
-    box-sizing: border-box; /* Includes padding in the width calculation */
-}
-
-    /* 3. Make sure the Blog Image fills its container */
-   .full-post-img {
-    width: 100%;           /* Forces image to take up 100% of the available width */
-    max-width: 100%;       /* Hard safety cap to prevent horizontal scrolling */
-    height: auto;          /* Maintains the original aspect ratio (no squishing) */
-    display: block;        /* Removes the tiny gap often found under images */
-    margin: 0 auto 20px;   /* Centers it and adds space before the title */
-    border-radius: 8px;    /* Matches your site's aesthetic */
-}
-}
-
+/* MOBILE ONLY (Screens smaller than 767px) */
 @media (max-width: 767px) {
     .nav-container {
         flex-direction: column;
         gap: 10px;
     }
     
-    header h1 { font-size: 2rem; }
+    header h1 { 
+        font-size: 2rem; 
+    }
     
     .home-hero-img {
         width: 180px;
