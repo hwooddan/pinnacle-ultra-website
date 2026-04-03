@@ -353,7 +353,10 @@ header p {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* 50% horizontal (centered), 15% vertical (near the top) */
+    object-position: 50% 15%; 
     display: block;
+    transition: opacity 0.3s;
 }
 
 .race-tile:hover .race-tile-img {
