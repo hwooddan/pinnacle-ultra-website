@@ -539,7 +539,7 @@ header p {
     margin-top: 15px; /* Moved up closer to stats */
     padding: 6px 14px;
     background: var(--brand-green-light);
-    color: var(--brand-green-deep) !important;
+    color: var(--p-green-dark) !important;
     text-decoration: none !important;
     border-radius: 4px;
     font-size: 0.7rem;
@@ -597,6 +597,8 @@ header p {
     margin-bottom: 40px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    text-align:center;
+    Width: 100%;
 }
 
 .reviews-grid {
