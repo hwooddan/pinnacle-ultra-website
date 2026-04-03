@@ -47,68 +47,85 @@ body {
 }
 
 /* ==========================================
-   ZONE 2: NAVIGATION & HEADER
+   ZONE 2: THE UNIFIED FROSTY NAV
    ========================================== */
 
-header nav {
-    background: linear-gradient(var(--nav-bg) 0%, rgba(0,0,0,0) 100%);
-    padding: 13px 0;
-    position: fixed;
-    top: 0;
-    z-index: 9999;
-    width: 100%;
+.main-nav {
+    /* 1. The Transparency & Frost */
+    background: rgba(10, 38, 12, 0.3) !important; 
+    -webkit-backdrop-filter: blur(15px) saturate(180%) !important;
+    backdrop-filter: blur(15px) saturate(180%) !important;
+    
+    /* 2. Sizing & Position */
+    padding: 22px 0 !important; 
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
 }
 
-.nav-scrolled {
-    background-color: rgba(166, 212, 166, 0.5) !important; 
-    -webkit-backdrop-filter: blur(8px); /* Frosted glass for Safari */
-    backdrop-filter: blur(8px);         /* Frosted glass for modern browsers */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-    transition: background-color 0.5s ease;
-}
-
-.nav-container {
-    max-width: 85%;
+/* Container & Layout */
+.main-nav .nav-container {
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* Logo left, Links right */
+    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 30px;
 }
 
-.logo-text, .nav-logo {
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-decoration: none;
-    letter-spacing: 1px;
+/* Unified Logo Styling */
+.main-nav .logo-text {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 1.2rem !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
 }
 
-nav ul {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-    margin: 0;
+/* Unified List/Link Styling */
+.main-nav ul {
+    display: flex !important;
+    gap: 30px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center !important;
 }
 
-nav ul li a, .nav-back-link {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
+.main-nav ul li a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; /* Makes white text pop */
+    transition: color 0.3s ease !important;
 }
 
-nav ul li a:hover, .nav-back-link:hover {
-    color: var(--brand-green);
+/* Hover State */
+.main-nav ul li a:hover {
+    color: #a5d6a7 !important;
 }
 
+/* The Scrolled State */
+.main-nav.nav-scrolled {
+    background: rgba(10, 38, 12, 0.7) !important; 
+}
+
+/* 2. THE HERO SECTION (KEEP THIS PART!) */
 header {
     padding-top: 70px; 
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), 
                       url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000');
     background-size: cover;
     background-position: center;
-    min-height: 80vh; 
+    min-height: 85vh; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -117,24 +134,25 @@ header {
 
 header h1 {
     color: #ffffff; 
-    font-size: 3rem;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    margin: 0;
 }
 
 header p {
     color: var(--brand-green-light);
     font-size: 1.5rem;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+    margin-top: 10px;
 }
 
 .header-logo {
-    width: 300px;
+    width: 250px;
     max-width: 80%;
     height: auto;
     margin: 0 auto 20px;
-    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.9));
+    filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
 }
 
 /* ==========================================
@@ -294,16 +312,16 @@ header p {
 }
 
 /* ==========================================
-   ZONE 6: BIO PAGE (ABOUT.HTML)
+   ZONE 6 & 7: THE PERFECT BIO LAYOUT
    ========================================== */
 
 .bio-container {
-    max-width: 1200px;           /* Increased from 1000px for a larger feel */
-    margin: 120px auto 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 140px 20px 60px; /* Top padding for the frosty nav */
     display: flex;
-    flex-direction: column; 
+    flex-direction: column; /* Stacks on mobile */
     gap: 40px;
-    padding: 20px;
 }
 
 #author-image {
@@ -314,17 +332,53 @@ header p {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+.bio-content {
+    flex: 1;
+    min-width: 0; /* Important: Prevents text from pushing past the screen edge */
+}
+
 #author-name {
-    font-size: 3rem;             /* Larger title */
+    font-size: 2.5rem;
     color: var(--brand-green-deep);
     margin-top: 0;
 }
 
-#author-bio {
-    font-size: 1.25rem;          /* Larger, readable bio text */
-    line-height: 1.8;
-    color: var(--text-main);
-    margin-bottom: 30px;
+/* ==========================================
+   ZONE 7: DESKTOP SIDE-BY-SIDE (30% SPLIT)
+   ========================================== */
+
+@media (min-width: 768px) {
+    .bio-container {
+        flex-direction: row !important; /* Forces side-by-side */
+        align-items: flex-start !important;
+        gap: 5%; /* Creates a flexible gap between image and text */
+    }
+
+    #author-image {
+        /* This is the magic number: 30% of the parent container */
+        flex: 0 0 45% !important; 
+        max-width: 45% !important;
+        
+        position: sticky !important;
+        top: 130px !important; /* Keeps it visible under the frosty nav */
+        height: auto !important;
+        border-radius: 15px !important;
+        object-fit: cover !important;
+    }
+
+    .bio-content {
+        flex: 1 !important; /* Text takes up all remaining space (roughly 65-70%) */
+        max-width: 800px !important; /* Prevents text lines from getting too long to read */
+    }
+}
+
+/* MOBILE RESET: Ensures it still looks good on phones */
+@media (max-width: 767px) {
+    #author-image {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 30px !important;
+    }
 }
 /* ==========================================
    ZONE 9: RACE HISTORY TILES
@@ -476,46 +530,6 @@ header p {
     background: var(--brand-green-deep);
     color: white;
     transform: translateY(-2px);
-}
-
-/* ==========================================
-   ZONE 7: MEDIA QUERIES (DESKTOP)
-   ========================================== */
-
-@media (min-width: 768px) {
-    .bio-container {
-        flex-direction: row; 
-        align-items: flex-start;
-        gap: 80px;               /* Larger gap for a premium feel */
-    }
-
-    #author-image {
-        flex: 0 0 500px;         /* Increased from 400px to make image larger */
-        width: 500px;
-        position: sticky;
-        top: 110px;
-    }
-
-    .bio-content {
-        flex: 1;
-    }
-}
-
-/* MOBILE ONLY (Screens smaller than 767px) */
-@media (max-width: 767px) {
-    .nav-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    header h1 { 
-        font-size: 2rem; 
-    }
-    
-    .home-hero-img {
-        width: 180px;
-        height: 180px;
-    }
 }
 
 /* ==========================================
@@ -683,3 +697,15 @@ header p {
         flex-direction: column !important;
     }
 }
+/* ==========================================
+   BIO PAGE SPACING ONLY
+   ========================================== */
+
+/* This pushes the bio content down so it doesn't hide under the frosty nav */
+.bio-container {
+    padding-top: 140px !important; 
+    margin-top: 0 !important;
+}
+
+/* We don't need the nav-back-link rule anymore because the 
+   Unified Nav we just built handles all the links perfectly! */
