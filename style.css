@@ -373,24 +373,54 @@ header p {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 15px;
-    background: rgba(45, 90, 39, 0.9); /* Your deep green */
+    padding: 15px; /* Slightly tighter padding */
+    background: rgba(27, 94, 32, 0.95); 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    opacity: 0; /* Hidden by default */
-    transition: opacity 0.3s ease;
-    font-size: 0.85rem;
+    justify-content: flex-start; /* CRITICAL: Moves content to the top */
+    align-items: center;
+    padding-top: 25px;           /* Pushes the top stat down just enough */
+    opacity: 0;
+    transition: all 0.4s ease;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
 }
+   .race-tile-details span {
+    display: block;
+    font-size: 1.1rem;           /* Increased from 0.95rem */
+    font-weight: 800;            /* Extra bold for that "Stats" feel */
+    color: #ffffff;              /* Pure white for maximum contrast */
+    margin: 2px 0;               /* Tightened vertical gap */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;       /* Professional sports-style tracking */
+}
+.race-tile-details span::before {
+    content: "• "; /* Small bullet for style */
+    color: white;
+}
+
 
 .race-tile:hover .race-tile-details {
     opacity: 1; /* Revealed on hover */
 }
 
 .race-link {
-    color: var(--brand-green-light);
-    text-decoration: underline;
-    margin-top: 5px;
+    margin-top: 12px;            /* Brought up closer to the stats */
+    padding: 5px 12px;
+    background: var(--brand-green-light);
+    color: var(--brand-green-deep) !important;
+    text-decoration: none !important;
+    border-radius: 4px;          /* Matches your site's cleaner edges */
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+
+.race-link:hover {
+    background: white;
+    transform: translateY(-2px);
 }
 
 /* THE CREDENTIAL "PILLS" */
@@ -440,7 +470,7 @@ header p {
         flex: 1;
     }
 }
-}
+
 /* MOBILE ONLY (Screens smaller than 767px) */
 @media (max-width: 767px) {
     .nav-container {
