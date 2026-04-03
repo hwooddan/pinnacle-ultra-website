@@ -50,12 +50,12 @@ body {
    ZONE 2: NAVIGATION & HEADER
    ========================================== */
 
-nav {
+header nav {
     background: linear-gradient(var(--nav-bg) 0%, rgba(0,0,0,0) 100%);
     padding: 13px 0;
-    position: fixed;            /* Stays at the top while you scroll */
+    position: fixed;
     top: 0;
-    z-index: 9999;              /* Stays on top of all images */
+    z-index: 9999;
     width: 100%;
 }
 
@@ -621,29 +621,22 @@ header p {
 }
 
 /* ==========================================
-   ZONE 10: THE IRONCLAD FOOTER
+   ZONE 10: THE MODERN REFINED FOOTER
    ========================================== */
 
 #FINAL_FOOTER_ANCHOR {
-    /* Pulls it out of the fixed-nav flow */
     position: relative !important;
     display: block !important;
     clear: both !important;
-    float: none !important;
-    
-    /* Reset coordinates to bottom */
-    top: auto !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    
-    /* Design */
     width: 100% !important;
     margin-top: 100px !important;
     padding: 80px 0 40px !important;
+    
+    /* Sleek Modern Gradient */
     background: linear-gradient(180deg, #1b5e20 0%, #081c09 100%) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: none !important; /* Prevents nav shadows from appearing here */
-    z-index: 10 !important;
+    color: white !important;
+    z-index: 10;
 }
 
 #FINAL_FOOTER_ANCHOR .footer-container {
@@ -655,33 +648,25 @@ header p {
     padding: 0 20px !important;
 }
 
-#FINAL_FOOTER_ANCHOR .footer-logo {
-    font-size: 1.1rem !important;
-    font-weight: 900 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 3px !important;
-    color: #ffffff !important;
-    background: transparent !important;
-}
-
+/* Specific Fix for the Footer Nav */
 #FINAL_FOOTER_ANCHOR .footer-nav {
+    /* This overrides the 'fixed' position from the top of your CSS */
+    position: static !important; 
     display: flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     gap: 20px !important;
     background: transparent !important;
-    border: none !important;
+    width: auto !important; /* Prevents it from taking up 100% width like the top nav */
 }
 
 #FINAL_FOOTER_ANCHOR .footer-nav a, 
-#FINAL_FOOTER_ANCHOR .footer-nav .copyright,
-#FINAL_FOOTER_ANCHOR .footer-nav span {
+#FINAL_FOOTER_ANCHOR .footer-nav .copyright {
     color: rgba(255, 255, 255, 0.4) !important;
     font-size: 0.75rem !important;
     text-transform: uppercase !important;
     letter-spacing: 1px !important;
     text-decoration: none !important;
-    background: transparent !important;
-    margin: 0 !important;
 }
 
 #FINAL_FOOTER_ANCHOR .footer-nav a:hover {
@@ -692,11 +677,9 @@ header p {
 @media (max-width: 768px) {
     #FINAL_FOOTER_ANCHOR .footer-container {
         flex-direction: column !important;
-        text-align: center !important;
         gap: 30px !important;
     }
     #FINAL_FOOTER_ANCHOR .footer-nav {
         flex-direction: column !important;
-        gap: 10px !important;
     }
 }
