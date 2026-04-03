@@ -619,3 +619,84 @@ header p {
 .fa-instagram:hover {
     transform: scale(1.15) rotate(5deg);
 }
+
+/* ==========================================
+   ZONE 10: THE IRONCLAD FOOTER
+   ========================================== */
+
+#FINAL_FOOTER_ANCHOR {
+    /* Pulls it out of the fixed-nav flow */
+    position: relative !important;
+    display: block !important;
+    clear: both !important;
+    float: none !important;
+    
+    /* Reset coordinates to bottom */
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    
+    /* Design */
+    width: 100% !important;
+    margin-top: 100px !important;
+    padding: 80px 0 40px !important;
+    background: linear-gradient(180deg, #1b5e20 0%, #081c09 100%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none !important; /* Prevents nav shadows from appearing here */
+    z-index: 10 !important;
+}
+
+#FINAL_FOOTER_ANCHOR .footer-container {
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 20px !important;
+}
+
+#FINAL_FOOTER_ANCHOR .footer-logo {
+    font-size: 1.1rem !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    color: #ffffff !important;
+    background: transparent !important;
+}
+
+#FINAL_FOOTER_ANCHOR .footer-nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+#FINAL_FOOTER_ANCHOR .footer-nav a, 
+#FINAL_FOOTER_ANCHOR .footer-nav .copyright,
+#FINAL_FOOTER_ANCHOR .footer-nav span {
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    margin: 0 !important;
+}
+
+#FINAL_FOOTER_ANCHOR .footer-nav a:hover {
+    color: #a5d6a7 !important;
+}
+
+/* Mobile Stack */
+@media (max-width: 768px) {
+    #FINAL_FOOTER_ANCHOR .footer-container {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 30px !important;
+    }
+    #FINAL_FOOTER_ANCHOR .footer-nav {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+}
