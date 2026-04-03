@@ -1,40 +1,86 @@
 /* ==========================================
    ZONE 1: DESIGN TOKENS (VARS & RESET)
    ========================================== */
-
 :root {
-    /* Brand Colors - Defined here so they are easy to change site-wide */
-    --brand-green: hwb(120 65% 29%);
-    --brand-green-dark: hwb(120 40% 45%);
-    --brand-green-deep: #2d5a27;
-    --brand-green-light: #e8f5e9;
-    
+    /* --- 1. BRAND COLORS --- */
+    --p-green-main: #1b5e20;
+    --p-green-main-rgb: 27, 94, 32;
+    --p-green-accent: #a5d6a7;
+    --p-orange-accent: #f4b50b;
+    --p-green-dark: #0a1e0c;
+    --p-green-light: #e8f5e9;
+    --p-white: #ffffff;
+    --p-text-light: #ffffff;
+    --p-text-dim: rgba(255, 255, 255, 0.7);
+    --p-font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /*Functional dials*/
+
+    --body-font: var(--p-font-stack);
+    --site-bg: var(--p-white);
+    --text-main: #333333;
+    --text-nav: var(--p-white);
+    --heading-color: var(--p-green-main);
+    --nav-bg: rgba(var(--p-green-main-rgb), var(--nav-opacity));
+    --nav-opacity: 0.4;
+    --btn-bg: var(--p-green-main);
+    --btn-hover: var(--p-green-accent);
+    --btn-text: var(--p-white);
+    --footer-bg: rgb(var(--p-green-dark-rgb));
+    --pill-bg: var(--p-green-main);   /* Or whatever color the pill is */
+    --pill-text: var(--p-white);    /* HERE is your fix for the dark writing */
+/* Typography Colors */
+    --title-main: var(--p-green-dark); /* For your big H1s */
+    --title-sub: var(--p-green-main);   /* For H2s and H3s */   
+    --subtitle-text: var(--p-text-dim);  /* For those little 'intro' lines */
+   
     /* Theme Colors (Light Mode Defaults) */
     --bg-main: #ffffff;
     --bg-alt: #f4f4f4;
     --text-main: #333333;
     --text-muted: #666666;
     --card-bg: #ffffff;
-    --nav-bg: rgba(0, 0, 0, 0.5);
+
+    /* --- 2. NAVIGATION (THE FROST) --- */
+    --nav-height: 85px;
+    --nav-padding: 22px;
+    --nav-blur: 18px;
+    --nav-opacity: 0.5; /* TEST DIAL: Try changing this now! */
+    --nav-opacity-scrolled: 0.6;
+    --nav-border: rgba(255, 255, 255, 0.1);
+    
+     
+    /* --- 3. TYPOGRAPHY --- */
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --size-logo: 1.2rem;
+    --size-nav: 0.9rem;
+    --size-h1: 3.5rem;
+
+    /* --- 4. LAYOUT & SPACING --- */
+    --bio-img-width: 30%;
+    --bio-content-gap: 5%;
+    --container-width: 1200px;
+    --section-padding: 80px;
 }
 
-/* DARK MODE OVERRIDES: Automatically triggers based on device settings */
+/* DARK MODE OVERRIDES */
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-main: #121212;      /* Deep charcoal background */
-        --bg-alt: #1e1e1e;       /* Slightly lighter for sections */
-        --text-main: #e0e0e0;    /* Soft white for readability */
-        --text-muted: #b0b0b0;   /* Grey for secondary text */
-        --card-bg: #252525;      /* Darker grey cards */
+        --bg-main: #121212;
+        --bg-alt: #1e1e1e;
+        --text-main: #e0e0e0;
+        --text-muted: #b0b0b0;
+        --card-bg: #252525;
     }
 }
 
+/* GLOBAL RESET */
 * {
-    box-sizing: border-box;     /* Ensures padding doesn't break the layout width */
+    box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;    /* Makes clicking links glide down the page */
+    scroll-behavior: smooth;
     background-color: var(--bg-main);
     color: var(--text-main);
 }
@@ -42,34 +88,34 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    overflow-x: hidden;         /* Kills the "mobile wobble" globally */
+    font-family: var(--body-font);
+    overflow-x: hidden;
 }
 
 /* ==========================================
-   ZONE 2: THE UNIFIED FROSTY NAV
+   ZONE 2: THE UNIFIED FROSTY NAV (LAYOUT FIX)
    ========================================== */
 
 .main-nav {
-    /* 1. The Transparency & Frost */
-    background: rgba(10, 38, 12, 0.3) !important; 
-    -webkit-backdrop-filter: blur(15px) saturate(180%) !important;
-    backdrop-filter: blur(15px) saturate(180%) !important;
+    background: var(--nav-bg) !important; 
+    -webkit-backdrop-filter: blur(var(--nav-blur)) saturate(180%) !important;
+    backdrop-filter: blur(var(--nav-blur)) saturate(180%) !important;
     
-    /* 2. Sizing & Position */
-    padding: 22px 0 !important; 
+    /* Controlling thickness via your variable */
+    padding: var(--nav-padding) 0 !important; 
+    
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     z-index: 9999 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: 1px solid var(--nav-border) !important;
     transition: all 0.3s ease !important;
 }
 
-/* Container & Layout */
+/* FIX: This puts the Logo on the Left and Menu on the Right */
 .main-nav .nav-container {
-    max-width: 1200px;
+    max-width: var(--container-width);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -77,47 +123,48 @@ body {
     padding: 0 30px;
 }
 
-/* Unified Logo Styling */
-.main-nav .logo-text {
-    color: #ffffff !important;
-    font-weight: 900 !important;
-    font-size: 1.2rem !important;
-    text-decoration: none !important;
-    text-transform: uppercase !important;
-    letter-spacing: 2px !important;
-}
-
-/* Unified List/Link Styling */
+/* FIX: This removes bullet points and lines items up horizontally */
 .main-nav ul {
     display: flex !important;
     gap: 30px !important;
-    list-style: none !important;
+    list-style: none !important; /* Kills the bullet points */
     margin: 0 !important;
     padding: 0 !important;
     align-items: center !important;
 }
 
+.main-nav .logo-text {
+    color: var(--text-nav) !important;
+    font-weight: 900 !important;
+    font-size: var(--size-logo) !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    font-family: var(--font-main);
+}
+
 .main-nav ul li a {
-    color: #ffffff !important;
+    color: var(--text-nav) !important;
     text-decoration: none !important;
     font-weight: 700 !important;
-    font-size: 0.9rem !important;
+    font-size: var(--size-nav) !important;
     text-transform: uppercase !important;
     letter-spacing: 1px !important;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; /* Makes white text pop */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
     transition: color 0.3s ease !important;
 }
 
-/* Hover State */
+.main-nav .logo-text:hover {
+    color: var(--p-orange-accent) !important;
+}
+
 .main-nav ul li a:hover {
-    color: #a5d6a7 !important;
+    color: var(--p-orange-accent) !important;
 }
 
-/* The Scrolled State */
 .main-nav.nav-scrolled {
-    background: rgba(10, 38, 12, 0.7) !important; 
+    background: rgba(var(--nav-rgb), var(--nav-opacity-scrolled)) !important;
 }
-
 /* 2. THE HERO SECTION (KEEP THIS PART!) */
 header {
     padding-top: 70px; 
@@ -133,7 +180,7 @@ header {
 }
 
 header h1 {
-    color: #ffffff; 
+    color: var(--p-white) !important; 
     font-size: 3.5rem;
     text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
     text-transform: uppercase;
@@ -142,7 +189,7 @@ header h1 {
 }
 
 header p {
-    color: var(--brand-green-light);
+    color: var(--p-white) !important;
     font-size: 1.5rem;
     margin-top: 10px;
 }
@@ -161,7 +208,7 @@ header p {
 
 .btn-green {
     display: inline-block;
-    background-color: var(--brand-green);
+    background-color: var(--btn-bg) !important;
     color: white !important;
     padding: 12px 28px;
     text-decoration: none;
@@ -173,7 +220,7 @@ header p {
 }
 
 .btn-green:hover {
-    background-color: var(--brand-green-dark);
+    background-color: var(--btn-hover) !important;
     transform: translateY(-3px) scale(1.05);
 }
 
@@ -209,7 +256,7 @@ header p {
 }
 
 #home-title {
-    color: var(--brand-green-deep);
+    color: var(--title-main);
     font-size: 2.2rem;
     font-weight: 800;
 }
@@ -507,31 +554,33 @@ header p {
     transform: translateY(-2px);
 }
 
-/* THE CREDENTIAL "PILLS" */
+/* 1. THE PARENT (The Bus Driver) - This handles the stacking/wrapping */
 .credentials-list {
-    display: flex;
-    flex-wrap: wrap;             /* Allows them to wrap to a new line */
-    gap: 12px;
+    display: flex !important;
+    flex-wrap: wrap !important;     /* This is what makes them stack nicely */
+    gap: 12px !important;           /* Space between pills */
     margin-top: 15px;
+    justify-content: flex-start;    /* Aligns them to the left */
 }
 
+/* 2. THE CHILD (The Passenger) - This handles the color and shape */
 .credential-tag {
-    background: var(--brand-green-light);
-    color: var(--brand-green-deep);
-    padding: 8px 20px;           /* More "padding" makes them look like containers */
-    border-radius: 50px;         /* Pill shape */
+    background: var(--p-green-main);
+    color: var(--p-white) !important;
+    padding: 8px 20px;
+    border-radius: 50px;
     font-size: 0.95rem;
     font-weight: bold;
-    border: 2px solid var(--brand-green-deep);
+    border: none !important; 
+    outline: none !important; 
     transition: all 0.3s ease;
 }
 
 .credential-tag:hover {
-    background: var(--brand-green-deep);
-    color: white;
+    background: var(--p-green-accent);
     transform: translateY(-2px);
 }
-
+}
 /* ==========================================
    ZONE 8: REVIEWS & TESTIMONIALS
    ========================================== */
