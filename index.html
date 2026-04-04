@@ -65,20 +65,22 @@
             <p>Oops! Something went wrong. Please try again.</p>
         </div>
 
-        <form id="pinnacle-contact-form" class="contact-form">
+        <form id="pinnacle-contact-form" action="https://formspree.io/f/xjgppbaa" method="POST" class="contact-form">
+        <input type="hidden" name="_subject" value="New Inquiry from Pinnacle Ultra">
+        <input type="text" name="_gotcha" style="display:none">
             <div class="form-group">
                 <label for="name">Runner Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required data-fs-field>
+                <input type="text" id="name" name="name" placeholder="Your Name">
             </div>
 
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="runner@example.com" required data-fs-field>
+                <input type="email" id="email" name="email" placeholder="runner@example.com">
             </div>
 
             <div class="form-group">
                 <label for="message">Your Inquiry</label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell me about your goals..." required data-fs-field></textarea>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your goals..."></textarea>
             </div>
 
             <button type="submit" class="btn-primary" data-fs-submit-btn>Send Message</button>
