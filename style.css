@@ -1,55 +1,49 @@
-/* ==========================================
-   ZONE 1: DESIGN TOKENS (VARS & RESET)
-   ========================================== */
 :root {
     /* --- 1. BRAND COLORS --- */
-    --p-green-main: #1b5e20;
-    --p-green-main-rgb: 27, 94, 32;
+    --p-green-main: #0c5f12;
+    --p-green-main-rgb: 12, 95, 18;
     --p-green-accent: #a5d6a7;
-    
-    --p-green-midnight: #081c09;
-    --p-green-midnight-rgb: 8, 28, 9;
+    --p-green-alpine: #052608; 
+    --p-green-alpine-rgb: 5, 38, 8;
     --p-green-dark-rgb: 10, 30, 12;
     --p-green-light: #e8f5e9;
     --p-white: #ffffff;
     --p-text-light: #ffffff;
     --p-text-dim: rgba(255, 255, 255, 0.7);
     --p-font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --p-orange-main: #FF4E00;   /* Vibrant Sunset Orange */
+    --p-orange-main: #FF4E00; /* Vibrant Sunset Orange */
+    --p-orange-main-rgb: 255, 78, 0; /* Vibrant Sunset Orange */
     --p-orange-hover: #E64600;  /* Slightly deeper for the hover effect */
     
-    /*Function dials*/
-
-    --body-font: var(--p-font-stack)
+    /* Function dials */
+    --body-font: var(--p-font-stack); 
     --site-bg: var(--p-white);
     --text-main: #333333;
     --text-nav: var(--p-white);
     --heading-color: var(--p-green-main);
-    --nav-bg: rgba(var(--p-green-midnight-rgb), var(--nav-opacity));
-    --nav-opacity: 0.4;
+    --nav-bg: rgba(var(--p-green-main-rgb), var(--nav-opacity));
+    --nav-opacity: 0.8; /* Increased for a richer Alpine look */
 
     --btn-text: var(--p-white);
-    --footer-bg: rgb(var(--p-green-midnight-rgb));
+    --footer-bg: rgb(var(--p-orange-main-rgb)); 
     
-    --pill-bg: var(--p-orange-main);   /* Or whatever color the pill is */
-    --pill-text: var(--p-white);    /* HERE is your fix for the dark writing */
+    --pill-bg: var(--p-orange-main);
+    --pill-text: var(--p-white);
 
-/* Typography Colors */
-    --title-main: var(--p-green-dark); /* For your big H1s */
-    --title-sub: var(--p-green-main);   /* For H2s and H3s */   
-    --subtitle-text: var(--p-text-dim);  /* For those little 'intro' lines */
+    /* Typography Colors */
+    --title-main: var(--p-green-alpine); /* Updated to match Alpine */
+    --title-sub: var(--p-green-main);   
+    --subtitle-text: var(--p-text-dim);
 
-/* button controls*/
+    /* Button controls */
     --btn-bg: var(--p-orange-main);
-    --btn-hover: var(--p-orange-hover); /* Linking to the hover palette */
-    --btn-text: var(--p-white);
-    --btn-radius: 50px; /* One dial to change "Square" vs "Pill" buttons */
+    --btn-hover: var(--p-orange-hover);
+    --btn-radius: 50px;
     --btn-padding: 15px 35px;
    
-    /* Theme Colors (Light Mode Defaults) */
+    /* Theme Colors */
     --bg-main: #ffffff;
     --bg-alt: #f4f4f4;
-    --text-main: #333333;
     --text-muted: #666666;
     --card-bg: #ffffff;
 
@@ -57,11 +51,9 @@
     --nav-height: 85px;
     --nav-padding: 22px;
     --nav-blur: 18px;
-    --nav-opacity: 0.5; /* TEST DIAL: Try changing this now! */
-    --nav-opacity-scrolled: 0.6;
+    --nav-opacity-scrolled: 0.8;
     --nav-border: rgba(255, 255, 255, 0.1);
     
-     
     /* --- 3. TYPOGRAPHY --- */
     --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --size-logo: 1.2rem;
@@ -153,9 +145,9 @@ button[type="submit"]:active,
    ========================================== */
 
 .main-nav {
-    background: var(--nav-bg) !important; 
-    -webkit-backdrop-filter: blur(var(--nav-blur)) saturate(180%) !important;
-    backdrop-filter: blur(var(--nav-blur)) saturate(180%) !important;
+    background: var(--nav-bg) !important;
+    -webkit-backdrop-filter: blur(var(--nav-blur)) saturate(110%) !important;
+    backdrop-filter: blur(var(--nav-blur)) saturate(110%) !important;
     
     /* Controlling thickness via your variable */
     padding: var(--nav-padding) 0 !important; 
@@ -197,6 +189,11 @@ button[type="submit"]:active,
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
     font-family: var(--font-main);
+    background-color: transparent !important; 
+    background: none !important;
+    padding: 0 !important; 
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .main-nav ul li a {
@@ -218,9 +215,6 @@ button[type="submit"]:active,
     color: var(--p-orange-main) !important;
 }
 
-.main-nav.nav-scrolled {
-    background: rgba(var(--nav-rgb), var(--nav-opacity-scrolled)) !important;
-}
 /* 2. THE HERO SECTION (KEEP THIS PART!) */
 header {
     padding-top: 70px; 
@@ -879,10 +873,8 @@ header p {
     clear: both !important;
     width: 100% !important;
     margin-top: 0px !important;
-    padding: 80px 0 40px !important;
-    
-    /* Sleek Modern Gradient */
-    background: linear-gradient(180deg, #1b5e20 0%, #081c09 100%) !important;
+    padding: 80px 0 40px !important;   
+    background: linear-gradient(180deg, var(--p-green-main) 0%, var(--p-green-alpine) 100%) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
     color: white !important;
     z-index: 10;
