@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
     method: "POST", 
     body: data,
     headers: {
-        'Accept': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
-    }
+    'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest'
+}
 })
             .then(response => {
                 btn.innerText = originalBtnText;
