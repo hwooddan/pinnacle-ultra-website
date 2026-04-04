@@ -77,6 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const statusSuccess = document.getElementById("form-success");
             const statusError = document.getElementById("form-error");
             const data = new FormData(event.target);
+            const runnerName = data.get('name') || 'New Runner';
+            data.set('_subject', `New Inquiry from ${runnerName}`); 
+            data.set('Submitted At', new Date().toLocaleString());
 
             // Show a "Sending..." state on the button
             const btn = event.target.querySelector('button');
