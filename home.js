@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     body: data,
     headers: {
         'Accept': 'application/json'
+        'X-Requested-With': 'XMLHttpRequest'
     }
 })
             .then(response => {
