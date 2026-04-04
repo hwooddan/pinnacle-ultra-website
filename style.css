@@ -811,10 +811,17 @@ header p {
 
 /* --- UPDATED MOBILE TWEAK --- */
 @media (max-width: 768px) {
-    .contact-section {
-        padding: 60px 0; /* Reduces the huge vertical gap on mobile */
-    }
+   .contact-section {
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
+.contact-form {
+    width: 100%;
+    max-width: 600px; /* Or whatever width you prefer */
+    margin: 0 auto;  /* Centers the form */
+    box-sizing: border-box; /* CRITICAL: Includes padding in the width calculation */
+}
     .contact-section .title-main {
         font-size: 2rem; /* Slightly smaller for better "word-wrapping" */
         line-height: 1.2;
@@ -830,6 +837,9 @@ header p {
     }
 }
 
+.contact-form .btn-primary {
+    width: 100%; /* Makes the button easier to tap on a phone */
+}
 /* Optional: Extra tweak for very small phones (iPhone SE size) */
 @media (max-width: 480px) {
     .contact-section .title-main {
