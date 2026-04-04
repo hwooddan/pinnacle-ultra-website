@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerText = "Sending...";
             btn.disabled = true;
 
-           fetch("https://formspree.io/f/xjgppbaa", { // Use the direct URL string
-    method: "POST", // Hard-coded POST in all caps
+           fetch("https://formspree.io/f/xjgppbaa", {  
+    method: "POST", 
     body: data,
     headers: {
         'Accept': 'application/json'
