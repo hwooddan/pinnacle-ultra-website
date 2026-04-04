@@ -6,33 +6,45 @@
     --p-green-main: #1b5e20;
     --p-green-main-rgb: 27, 94, 32;
     --p-green-accent: #a5d6a7;
-    --p-orange-accent: #f4b50b;
-    --p-green-dark: #0a1e0c;
+    
+    --p-green-midnight: #081c09;
+    --p-green-midnight-rgb: 8, 28, 9;
+    --p-green-dark-rgb: 10, 30, 12;
     --p-green-light: #e8f5e9;
     --p-white: #ffffff;
     --p-text-light: #ffffff;
     --p-text-dim: rgba(255, 255, 255, 0.7);
     --p-font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --p-orange-main: #FF4E00;   /* Vibrant Sunset Orange */
+    --p-orange-hover: #E64600;  /* Slightly deeper for the hover effect */
+    
+    /*Function dials*/
 
-    /*Functional dials*/
-
-    --body-font: var(--p-font-stack);
+    --body-font: var(--p-font-stack)
     --site-bg: var(--p-white);
     --text-main: #333333;
     --text-nav: var(--p-white);
     --heading-color: var(--p-green-main);
-    --nav-bg: rgba(var(--p-green-main-rgb), var(--nav-opacity));
+    --nav-bg: rgba(var(--p-green-midnight-rgb), var(--nav-opacity));
     --nav-opacity: 0.4;
-    --btn-bg: var(--p-green-main);
-    --btn-hover: var(--p-green-accent);
+
     --btn-text: var(--p-white);
-    --footer-bg: rgb(var(--p-green-dark-rgb));
-    --pill-bg: var(--p-green-main);   /* Or whatever color the pill is */
+    --footer-bg: rgb(var(--p-green-midnight-rgb));
+    
+    --pill-bg: var(--p-orange-main);   /* Or whatever color the pill is */
     --pill-text: var(--p-white);    /* HERE is your fix for the dark writing */
+
 /* Typography Colors */
     --title-main: var(--p-green-dark); /* For your big H1s */
     --title-sub: var(--p-green-main);   /* For H2s and H3s */   
     --subtitle-text: var(--p-text-dim);  /* For those little 'intro' lines */
+
+/* button controls*/
+    --btn-bg: var(--p-orange-main);
+    --btn-hover: var(--p-orange-hover); /* Linking to the hover palette */
+    --btn-text: var(--p-white);
+    --btn-radius: 50px; /* One dial to change "Square" vs "Pill" buttons */
+    --btn-padding: 15px 35px;
    
     /* Theme Colors (Light Mode Defaults) */
     --bg-main: #ffffff;
@@ -92,6 +104,50 @@ body {
     overflow-x: hidden;
 }
 
+/* --- MASTER BUTTON WIRING --- */
+
+.btn-primary, 
+button[type="submit"], 
+.cta-button, 
+.btn-green, 
+.btn-large,
+.contact-form .btn-primary {
+    background-color: var(--btn-bg) !important;
+    color: #ffffff !important;
+    padding: 15px 35px !important;
+    border-radius: 50px !important;
+    display: inline-block;
+    border: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 78, 0, 0.2);
+}
+
+.btn-primary:hover, 
+button[type="submit"]:hover, 
+.cta-button:hover, 
+.btn-green:hover, 
+.btn-large:hover,
+.contact-form .btn-primary:hover { /* FIXED: Removed rogue .contact-form, and fixed spacing */
+    background-color: var(--btn-hover) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 78, 0, 0.3);
+}
+
+/* The "Active" click effect */
+.btn-primary:active, 
+button[type="submit"]:active, 
+.cta-button:active, 
+.btn-green:active, 
+.btn-large:active,
+.contact-form .btn-primary:active { /* FIXED: Added missing :active tags */
+    transform: translateY(-1px);
+}
 /* ==========================================
    ZONE 2: THE UNIFIED FROSTY NAV (LAYOUT FIX)
    ========================================== */
@@ -155,11 +211,11 @@ body {
 }
 
 .main-nav .logo-text:hover {
-    color: var(--p-orange-accent) !important;
+    color: var(--p-orange-main) !important;
 }
 
 .main-nav ul li a:hover {
-    color: var(--p-orange-accent) !important;
+    color: var(--p-orange-main) !important;
 }
 
 .main-nav.nav-scrolled {
@@ -565,7 +621,7 @@ header p {
 
 /* 2. THE CHILD (The Passenger) - This handles the color and shape */
 .credential-tag {
-    background: var(--p-green-main);
+    background: var(--p-orange-main);
     color: var(--p-white) !important;
     padding: 8px 20px;
     border-radius: 50px;
@@ -577,10 +633,10 @@ header p {
 }
 
 .credential-tag:hover {
-    background: var(--p-green-accent);
+    background: var(--p-orange-hover);
     transform: translateY(-2px);
 }
-}
+
 /* ==========================================
    ZONE 8: REVIEWS & TESTIMONIALS
    ========================================== */
@@ -662,9 +718,27 @@ header p {
 /* CONTACT SECTION --- */
 
 .contact-section {
-    padding: 80px 0;
-    background-color: var(--site-bg);
-    text-align: center; /* Centers the titles */
+    /* Top | Left/Right | Bottom */
+    padding: 20px 0 20px 0; /* Reduced the 80px to 20px */
+    
+    background-image: linear-gradient(rgba(245, 245, 245, 0.3), rgba(245, 245, 245, 0.75)), 
+                      url('Mountain-scene-contact.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.title-main {
+    font-size: 3.5rem; /* Big impact size */
+    margin-bottom: 20px;
+    display: block;
+}
+
+.subtitle {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    margin-left: auto; /* Centers the subtitle block */
+    margin-right: auto;
 }
 
 .contact-header {
@@ -689,8 +763,8 @@ header p {
 
 .form-group label {
     font-weight: bold;
-    color: var(--title-sub); /* Your secondary green */
-    font-size: 0.9rem;
+    color: var(--title-sub); 
+    font-size: 1.7rem;
 }
 
 .form-group input, 
@@ -698,7 +772,7 @@ header p {
     padding: 12px 15px;
     border: 2px solid rgba(var(--p-green-dark-rgb), 0.1); /* Subtle brand border */
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     transition: all 0.3s ease;
 }
 
@@ -710,7 +784,7 @@ header p {
     box-shadow: 0 0 8px rgba(var(--p-green-dark-rgb), 0.1);
 }
 .contact-form .btn-primary {
-    background-color: var(--p-green-main) !important;
+    background-color: var(--btn-bg) !important;
     color: var(--p-white) !important;
     padding: 15px 30px !important; /* This gives the box its "height" and "width" */
     border: none;
@@ -723,9 +797,8 @@ header p {
 }
 
 .contact-form .btn-primary:hover {
-    background-color: var(--p-green-accent) !important;
-}
-
+     background-color: var(--btn-hover) !important;
+    transform: translateY(-3px) scale(1.05);
 }
 
 /* --- FEEDBACK MESSAGES --- */
@@ -740,6 +813,34 @@ header p {
     background: rgba(27, 94, 32, 0.1); /* Faint version of your main green */
     color: var(--p-green-main);
     border: 1px solid var(--p-green-main);
+}
+
+/* --- UPDATED MOBILE TWEAK --- */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 60px 0; /* Reduces the huge vertical gap on mobile */
+    }
+
+    .contact-section .title-main {
+        font-size: 2rem; /* Slightly smaller for better "word-wrapping" */
+        line-height: 1.2;
+        margin-bottom: 15px;
+        letter-spacing: -0.5px; /* Keeps it looking sharp */
+    }
+
+    .contact-section .subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 35px; /* Brings the form closer to the text */
+        padding: 0 10px;    /* Prevents text from hitting the screen edges */
+        line-height: 1.5;
+    }
+}
+
+/* Optional: Extra tweak for very small phones (iPhone SE size) */
+@media (max-width: 480px) {
+    .contact-section .title-main {
+        font-size: 1.8rem;
+    }
 }
 
 /* ==========================================
@@ -777,7 +878,7 @@ header p {
     display: block !important;
     clear: both !important;
     width: 100% !important;
-    margin-top: 100px !important;
+    margin-top: 0px !important;
     padding: 80px 0 40px !important;
     
     /* Sleek Modern Gradient */
@@ -806,6 +907,7 @@ header p {
     gap: 20px !important;
     background: transparent !important;
     width: auto !important; /* Prevents it from taking up 100% width like the top nav */
+    
 }
 
 #FINAL_FOOTER_ANCHOR .footer-nav a, 
