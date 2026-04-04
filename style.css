@@ -659,6 +659,89 @@ header p {
     margin-top: 5px;
 }
 
+/* CONTACT SECTION --- */
+
+.contact-section {
+    padding: 80px 0;
+    background-color: var(--site-bg);
+    text-align: center; /* Centers the titles */
+}
+
+.contact-header {
+    margin-bottom: 40px;
+}
+
+.contact-form {
+    max-width: 600px; /* Keeps the form from getting too wide on desktop */
+    margin: 0 auto;   /* Centers the form "box" in the container */
+    text-align: left; /* Keeps labels/inputs aligned left inside the centered box */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- THE INPUT FIELDS --- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: var(--title-sub); /* Your secondary green */
+    font-size: 0.9rem;
+}
+
+.form-group input, 
+.form-group textarea {
+    padding: 12px 15px;
+    border: 2px solid rgba(var(--p-green-dark-rgb), 0.1); /* Subtle brand border */
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* The "Glow" when you click a box */
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--p-green-main);
+    box-shadow: 0 0 8px rgba(var(--p-green-dark-rgb), 0.1);
+}
+.contact-form .btn-primary {
+    background-color: var(--p-green-main) !important;
+    color: var(--p-white) !important;
+    padding: 15px 30px !important; /* This gives the box its "height" and "width" */
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%; /* Makes it a nice, solid bar across the bottom */
+    transition: background 0.3s ease;
+}
+
+.contact-form .btn-primary:hover {
+    background-color: var(--p-green-accent) !important;
+}
+
+}
+
+/* --- FEEDBACK MESSAGES --- */
+.form-feedback {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-feedback.success {
+    background: rgba(27, 94, 32, 0.1); /* Faint version of your main green */
+    color: var(--p-green-main);
+    border: 1px solid var(--p-green-main);
+}
+
 /* ==========================================
    SOCIAL MEDIA ICON STYLES
    ========================================== */
