@@ -84,11 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerText = "Sending...";
             btn.disabled = true;
 
-            fetch(event.target.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            })
+           fetch("https://formspree.io/f/xjgppbaa", { // Use the direct URL string
+    method: "POST", // Hard-coded POST in all caps
+    body: data,
+    headers: {
+        'Accept': 'application/json'
+    }
+})
             .then(response => {
                 btn.innerText = originalBtnText;
                 btn.disabled = false;
