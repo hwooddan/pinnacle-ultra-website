@@ -19,6 +19,7 @@ if (blogFeed) {
       .then((res) => res.json())
       .then(({ result }) => {
         if (result && result.length > 0) {
+          
           blogFeed.innerHTML = ""; 
           result.forEach((post) => {
             const postCard = document.createElement("div");
@@ -30,7 +31,7 @@ if (blogFeed) {
                 <div class="post-content">
                     <h2>${post.title}</h2>
                     <p>${post.body && post.body[0] && post.body[0].children ? post.body[0].children[0].text.substring(0, 100) + "..." : ""}</p>
-                    <a href="post.html?slug=${post.slug}" class="btn-green">Read More</a>
+                    <a href="post.html?slug=${post.slug}" class="btn-accent">Read More</a>
                 </div>`;
             blogFeed.appendChild(postCard);
           });

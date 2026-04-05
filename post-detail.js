@@ -40,7 +40,7 @@ if (slug) {
     </div>
     
     <div class="post-footer">
-        <a href="blog.html" class="btn-green btn-large">← Back to Ultra Ramblings</a>
+        <a href="blog.html" class="btn-accent btn-large">← Back to Ultra Ramblings</a>
     </div>
 `;
         } else {
