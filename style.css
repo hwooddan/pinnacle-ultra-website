@@ -1156,22 +1156,7 @@ header p {
         padding: 0 10px !important;
     }
 
-    /* 2. HEADER: Scale down for small screens */
-    .header-content {
-        padding: 100px 20px 40px; /* Adjusts space around the main logo */
-    }
-
-    .header-logo {
-        width: 250px; /* Keeps the big logo reasonable on mobile */
-        height: auto;
-    }
-
-    .header-content h1 {
-        font-size: 1.8rem;
-        margin-top: 15px;
-    }
-
-   
+    
        /* 4. CONTACT FORM: Responsive inputs */
     .contact-form {
         padding: 20px;
