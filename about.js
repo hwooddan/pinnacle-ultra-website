@@ -2,25 +2,45 @@ const PROJECT_ID = 'wpo056ht';
 const DATASET = 'production';
 
 window.addEventListener('DOMContentLoaded', () => {
-    // 1. Fetch Author/Bio Info
-    const AUTHOR_QUERY = encodeURIComponent('*[_type == "author"][0]{name, bio, credentials, "imageUrl": image.asset->url}');
-    const AUTHOR_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${AUTHOR_QUERY}`;
+   // 1. Fetch Author/Bio Info
+const AUTHOR_QUERY = encodeURIComponent('*[_type == "author"][0]{name, bio, credentials, "imageUrl": image.asset->url}');
+const AUTHOR_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${AUTHOR_QUERY}`;
 
-    fetch(AUTHOR_URL)
-        .then(res => res.json())
-        .then(({ result }) => {
-            if (result) {
-                document.getElementById('author-name').innerText = result.name;
-                document.getElementById('author-bio').innerText = result.bio;
-                document.getElementById('author-image').src = result.imageUrl;
-                if (result.credentials) {
-                    const credsContainer = document.getElementById('author-credentials');
-                    credsContainer.innerHTML = result.credentials
-                        .map(cred => `<span class="credential-tag">${cred}</span>`)
-                        .join('');
-                }
+fetch(AUTHOR_URL)
+    .then(res => res.json())
+    .then(({ result }) => {
+        if (result) {
+            document.getElementById('author-name').innerText = result.name;
+            
+            if (result.bio) {
+                const bioContainer = document.getElementById('author-bio');
+                
+                // 1. Map the bio into paragraphs
+                const paragraphHTML = result.bio.split(/\n\n+/)
+                    .map(p => `<p class="bio-p">${p.trim()}</p>`)
+                    .join('');
+
+                // 2. Define the button HTML
+                const bottomButton = `
+                    <div class="about-cta-container">
+                        <a href="index.html#pinnacle-contact-form" class="btn-primary">Contact Me</a>
+                    </div>
+                `;
+
+                // 3. Inject both: Paragraphs first, then the button
+                bioContainer.innerHTML = paragraphHTML + bottomButton;
             }
-        });
+
+            document.getElementById('author-image').src = result.imageUrl;
+
+            if (result.credentials) {
+                const credsContainer = document.getElementById('author-credentials');
+                credsContainer.innerHTML = result.credentials
+                    .map(cred => `<span class="credential-tag">${cred}</span>`)
+                    .join('');
+            }
+        }
+    });
 
     // 2. Fetch Race History Tiles
     const RACE_QUERY = encodeURIComponent(`*[_type == "racehistory"] | order(year desc){
