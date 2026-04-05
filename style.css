@@ -305,7 +305,7 @@ button[type="submit"]:active,
 
 /* 2. THE HERO SECTION (KEEP THIS PART!) */
 header {
-    padding-top: 70px; 
+    padding-top: 100px; 
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), 
                       url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000');
     background-size: cover;
@@ -1130,8 +1130,21 @@ header p {
     }
     #FINAL_FOOTER_ANCHOR .footer-nav {
         flex-direction: column !important;
+
+    .reviews-grid {
+        grid-template-columns: 1fr !important; 
+        gap: 40px !important;
+        padding: 0 20px !important;
+    }
+
+    /* Optional: Makes the images look a bit better on mobile cards */
+    .review-avatar {
+        width: 150px !important;
+        height: 150px !important;
     }
 }
+    }
+
 /* ==========================================
    BIO PAGE SPACING ONLY
    ========================================== */
