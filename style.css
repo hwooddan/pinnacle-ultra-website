@@ -197,6 +197,25 @@ button[type="submit"]:active,
     box-shadow: none !important;
 }
 
+.logo-group {
+    display: flex;
+    align-items: center; /* Vertically centers the icon with the text */
+    text-decoration: none; /* Removes the underline from the link */
+    gap: 10px; /* Space between the icon and the text */
+}
+
+.nav-icon {
+    height: 40px; /* Adjust this to fit your nav bar height */
+    width: auto;  /* Keeps the aspect ratio perfect */
+    border-radius: 4px; /* Optional: adds a slight roundness to the icon */
+}
+
+.logo-text {
+    font-weight: bold;
+    color: var(--p-white, #ffffff); /* Use your white variable */
+    font-size: 1.2rem;
+}
+
 .main-nav ul li a {
     color: var(--text-nav) !important;
     text-decoration: none !important;
@@ -340,6 +359,17 @@ header p {
     display: block;
 }
 
+.text-link {
+    color: var(--p-green-main, #2d5a27); /* Use your brand green */
+    text-decoration: underline;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.text-link:hover {
+    opacity: 0.7;
+    text-decoration: none; /* Clean look on hover */
+}
 /* ==========================================
    ZONE 5: BLOG STYLES
    ========================================== */
@@ -658,9 +688,16 @@ header p {
    ========================================== */
 
 .reviews-section {
-    padding: 80px 5%;
-    background-color: var(--bg-main);
-    text-align: center;
+    min-height: 600px; /* Adjust this to the average height of your reviews on desktop */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mobile tweak for the reserved space */
+@media (max-width: 768px) {
+    .reviews-section {
+        min-height: 800px; /* Usually taller on mobile because they stack */
+    }
 }
 
 .section-title h2 {
@@ -768,6 +805,11 @@ header p {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+#pinnacle-contact-form {
+    /* Adjust '100px' to match the height of your nav bar + 20px of breathing room */
+    scroll-margin-top: 300px; 
 }
 
 /* --- THE INPUT FIELDS --- */

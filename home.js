@@ -1,12 +1,35 @@
+/* ==========================================
+   4. THE "PING-PONG" KILLER (Runs immediately)
+   ========================================== */
+(function() {
+    if (window.location.hash === "#pinnacle-contact-form") {
+        const noHashURL = window.location.href.replace(/#.*$/, '');
+        window.history.replaceState('', document.title, noHashURL);
+        window.scrollTo(0, 0);
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const contactSection = document.getElementById("pinnacle-contact-form");
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                    setTimeout(() => {
+                        window.history.replaceState('', document.title, window.location.href + '#pinnacle-contact-form');
+                    }, 1000);
+                }
+            }, 300); 
+        });
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Pinnacle Home Script Loaded & Ready");
+
+    const PROJECT_ID = "wpo056ht"; 
+    const DATASET = "production";
 
     /* ==========================================
        1. SANITY: HOME DATA FETCH
        ========================================== */
-    const PROJECT_ID = "wpo056ht"; 
-    const DATASET = "production";
-
     const HOME_QUERY = encodeURIComponent(`*[_type == "homePage"][0]{
       welcomeTitle,
       welcomeText,
@@ -24,7 +47,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const img = document.getElementById("home-image");
 
             if (title) title.innerText = result.welcomeTitle || "Pinnacle Ultra Coaching";
-            if (text) text.innerText = result.welcomeText || "Trail & Ultra Coaching";
+
+            if (text && result.welcomeText) {
+                let rawText = result.welcomeText;
+
+                // 1. Inject Links
+                rawText = rawText.replace(
+                    "Instagram", 
+                    `<a href="https://instagram.com/andrea._.harwood" target="_blank" class="text-link">Pinnacle Ultra Instagram</a>`
+                );
+                rawText = rawText.replace(
+                    "contact form", 
+                    `<a href="#pinnacle-contact-form" class="text-link">contact form</a>`
+                );
+
+                // 2. De-Lumper (Paragraphs)
+                const paragraphs = rawText.split(/\n\n+/); 
+                text.innerHTML = paragraphs
+                    .map(p => `<p class="welcome-p">${p.trim()}</p>`)
+                    .join('');
+                
+                // THE OVERWRITE LINE WAS REMOVED FROM HERE
+            }
+
             if (img && result.imageUrl) img.src = result.imageUrl + "?w=600";
         }
       })
@@ -68,12 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById("pinnacle-contact-form");
 
     if (contactForm) {
-        console.log("Form found! Attaching listener...");
-        
         contactForm.addEventListener("submit", async (event) => {
             event.preventDefault();
-            console.log("Submit button clicked!");
-
             const statusSuccess = document.getElementById("form-success");
             const statusError = document.getElementById("form-error");
             const data = new FormData(event.target);
@@ -81,24 +122,22 @@ document.addEventListener('DOMContentLoaded', () => {
             data.set('_subject', `New Inquiry from ${runnerName}`); 
             data.set('Submitted At', new Date().toLocaleString());
 
-            // Show a "Sending..." state on the button
             const btn = event.target.querySelector('button');
             const originalBtnText = btn.innerText;
             btn.innerText = "Sending...";
             btn.disabled = true;
 
-           fetch("https://formspree.io/f/xjgppbaa", {  
-    method: "POST", 
-    body: data,
-    headers: {
-    'Accept': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest'
-}
-})
+            fetch("https://formspree.io/f/xjgppbaa", {  
+                method: "POST", 
+                body: data,
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
             .then(response => {
                 btn.innerText = originalBtnText;
                 btn.disabled = false;
-
                 if (response.ok) {
                     if (statusSuccess) statusSuccess.style.display = "block";
                     contactForm.style.display = "none";
@@ -113,13 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(error => {
-                console.error("Formspree Fetch Error:", error);
                 btn.innerText = originalBtnText;
                 btn.disabled = false;
                 if (statusError) statusError.style.display = "block";
             });
         });
-    } else {
-        console.error("CRITICAL: Form with ID 'pinnacle-contact-form' not found on this page.");
     }
 });
