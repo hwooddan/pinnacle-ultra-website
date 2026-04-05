@@ -1178,12 +1178,7 @@ header p {
         width: auto;
     }
 
-    .home-hero-img {
-        max-width: 250px; /* Prevents the 'Face' from being too big */
-        margin: 0 auto 20px;
-    }
-
-    /* 4. CONTACT FORM: Responsive inputs */
+       /* 4. CONTACT FORM: Responsive inputs */
     .contact-form {
         padding: 20px;
     }
