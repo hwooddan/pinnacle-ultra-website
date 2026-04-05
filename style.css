@@ -298,26 +298,33 @@ header p {
 }
 
  .home-hero-img {
-    /* 1. Force the image into a perfect circle */
-    width: 350px;           /* Adjust size as needed for your layout */
-    height: 350px;          /* Height must match Width for a perfect circle */
-    border-radius: 50%;
+    /* 1. Change fixed width/height to 'max' values */
+    width: 350px;
+    height: 350px;
     
-    /* 2. Critical: Prevents the image from stretching/squishing */
+    /* 2. ADD THIS: This is the magic "shrink" button */
+    max-width: 80vw;  /* Keeps it to 80% of the screen width max */
+    aspect-ratio: 1 / 1; /* Maintains the circle shape as it shrinks */
+    height: auto;     /* Allows height to follow the width */
+
+    /* 3. Keep the rest of your styles */
+    border-radius: 50%;
     object-fit: cover;
-    object-position: center; /* Keeps your face/subject in the middle */
-
-    /* 3. The "Off-White" Border */
-    /* 12px gives it a nice "framed" look; adjust for preference */
-    border: 12px solid var(--hero-img-bg); 
-
-    /* 4. Optional: Subtle shadow to make it "pop" from the background */
+    border: 12px solid var(--bg-alt);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-
-    /* 5. Mobile Safety */
-    max-width: 90vw;        /* Prevents it from going off-screen on tiny phones */
-    margin: 0 auto;         /* Keeps it centered if inside a flex container */
+    
+    /* 4. Ensure it's centered */
     display: block;
+    margin: 0 auto 20px auto; 
+}
+
+/* 5. EXTRA SAFETY: Specific tweak for small phones */
+@media (max-width: 480px) {
+    .home-hero-img {
+        width: 280px; /* Force a smaller size on tiny screens */
+        height: 280px;
+        border-width: 8px; /* Slightly thinner border looks better on small screens */
+    }
 }
 
 #home-title {
