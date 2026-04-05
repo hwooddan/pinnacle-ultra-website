@@ -44,6 +44,7 @@
     /* Theme Colors */
     --bg-main: #ffffff;
     --bg-alt: #f4f4f4;
+    --hero-img-bg: #e7e1e1; /* Fallback for the hero image */
     --text-muted: #666666;
     --card-bg: #ffffff;
 
@@ -296,13 +297,27 @@ header p {
     color: var(--text-main);
 }
 
-.home-hero-img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
+ .home-hero-img {
+    /* 1. Force the image into a perfect circle */
+    width: 350px;           /* Adjust size as needed for your layout */
+    height: 350px;          /* Height must match Width for a perfect circle */
     border-radius: 50%;
-    border: 3px solid var(--brand-green-deep);
-    margin-bottom: 20px;
+    
+    /* 2. Critical: Prevents the image from stretching/squishing */
+    object-fit: cover;
+    object-position: center; /* Keeps your face/subject in the middle */
+
+    /* 3. The "Off-White" Border */
+    /* 12px gives it a nice "framed" look; adjust for preference */
+    border: 12px solid var(--hero-img-bg); 
+
+    /* 4. Optional: Subtle shadow to make it "pop" from the background */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+
+    /* 5. Mobile Safety */
+    max-width: 90vw;        /* Prevents it from going off-screen on tiny phones */
+    margin: 0 auto;         /* Keeps it centered if inside a flex container */
+    display: block;
 }
 
 #home-title {
