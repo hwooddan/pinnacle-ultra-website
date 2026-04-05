@@ -90,18 +90,17 @@ html {
     color: var(--text-main);
 }
 
+html, body {
+    overflow-x: hidden; /* Prevents the 'ghost' menu from stretching the screen */
+    width: 100%;
+    position: relative;
+}
 
 body {
     margin: 0;
     padding: 0;
     font-family: var(--body-font);
     overflow-x: hidden;
-}
-
-html, body {
-    overflow-x: hidden; /* Prevents the 'ghost' menu from stretching the screen */
-    width: 100%;
-    position: relative;
 }
 
 /* --- MASTER BUTTON WIRING --- */
@@ -1143,50 +1142,5 @@ header p {
     margin-top: 0 !important;
 }
 
-/* ==========================================
-   ZONE 11: HOME PAGE MOBILE TIDY-UP
-   ========================================== */
-
-@media (max-width: 768px) {
-    
-    /* 1. SUCCESS STORIES: Force the stack */
-    .reviews-grid {
-        grid-template-columns: 1fr !important; /* Forces cards into one column */
-        gap: 25px !important;
-        padding: 0 10px !important;
-    }
-
-    
-       /* 4. CONTACT FORM: Responsive inputs */
-    .contact-form {
-        padding: 20px;
-    }
-
-    .form-group input, 
-    .form-group textarea {
-        width: 100% !important;
-        font-size: 16px; /* Prevents iOS from 'zooming in' on the box */
-    }
-
-    /* Ensure the orange submit button is full-width for easy tapping */
-    .btn-primary {
-        width: 100%;
-        padding: 15px;
-    }
-
-    /* 5. FOOTER: Center everything for mobile */
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-    }
-
-    .footer-nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .footer-nav .separator {
-        display: none; /* Hide the vertical line on mobile */
-    }
-}
+/* We don't need the nav-back-link rule anymore because the 
+   Unified Nav we just built handles all the links perfectly! */
