@@ -1130,7 +1130,7 @@ header p {
     }
     #FINAL_FOOTER_ANCHOR .footer-nav {
         flex-direction: column !important;
-
+    }
     .reviews-grid {
         grid-template-columns: 1fr !important; 
         gap: 40px !important;
