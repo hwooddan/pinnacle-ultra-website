@@ -459,13 +459,14 @@ header p {
     line-height: 1.2;
 }
 
-.post-body-text {
-    max-width: 700px;      
-    margin: 0 auto 50px;
-    text-align: left;
-    line-height: 1.7;
-    font-size: 1.1rem;
-    color: var(--text-main);
+.post-body-text img.inline-post-img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 500px !important; /* Matches your polaroid size */
+    height: auto !important;
+    margin: 30px auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* The Footer & Back Button */
@@ -485,6 +486,16 @@ header p {
     border-radius: 50px;
     text-decoration: none;
     font-weight: 800;
+}
+
+/* Styling for images placed inside the text body */
+.inline-post-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 35px auto; /* Gives the photo breathing room from the text */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 /* ==========================================

@@ -17,12 +17,23 @@ export default {
     {
       name: 'mainImage',
       type: 'image',
-      title: 'Main Image'
+      title: 'Main Image',
+      options: { hotspot: true } // Allows cropping the perfect thumbnail
     },
     {
       name: 'body',
-      type: 'text',
-      title: 'Post Content'
+      title: 'Post Content',
+      type: 'array', 
+      of: [
+        {
+          type: 'block' // This handles the standard text, bolding, lists, etc.
+        },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          title: 'Inline Image'
+        }
+      ]
     }
   ]
 }
