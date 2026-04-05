@@ -266,6 +266,8 @@ button[type="submit"]:active,
         width: 100%;
         height: auto;
         background: var(--nav-bg);
+        -webkit-backdrop-filter: blur(18px); /* Add this right above the regular one */
+        backdrop-filter: blur(18px);
         backdrop-filter: blur(var(--nav-blur));
         flex-direction: column !important;
         padding: 40px 0 !important;
