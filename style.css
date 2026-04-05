@@ -235,6 +235,53 @@ button[type="submit"]:active,
     color: var(--p-orange-main) !important;
 }
 
+/* --- THE HAMBURGER TOGGLE --- */
+.menu-toggle {
+    display: none; /* Hidden on Desktop */
+    background: none;
+    border: none;
+    color: var(--p-white);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+/* --- MOBILE STYLES (Max-width 768px) --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show the hamburger */
+    }
+
+    .nav-menu {
+        /* The "Frosty" Dropdown */
+        position: fixed;
+        top: 85px; /* Sits right under the nav bar */
+        right: -100%; /* Hidden off-screen to the right */
+        width: 100%;
+        height: auto;
+        background: var(--nav-bg);
+        backdrop-filter: blur(var(--nav-blur));
+        flex-direction: column !important; /* Stack links vertically */
+        padding: 40px 0 !important;
+        gap: 30px !important;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 1px solid var(--nav-border);
+    }
+
+    /* When the menu is "Open" */
+    .nav-menu.active {
+        right: 0; /* Slides into view */
+    }
+
+    /* Make the links big and easy to tap with a thumb */
+    .nav-menu li a {
+        font-size: 1.2rem !important;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
+
 /* 2. THE HERO SECTION (KEEP THIS PART!) */
 header {
     padding-top: 70px; 
