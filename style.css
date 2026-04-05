@@ -1143,5 +1143,76 @@ header p {
     margin-top: 0 !important;
 }
 
-/* We don't need the nav-back-link rule anymore because the 
-   Unified Nav we just built handles all the links perfectly! */
+/* ==========================================
+   ZONE 11: HOME PAGE MOBILE TIDY-UP
+   ========================================== */
+
+@media (max-width: 768px) {
+    
+    /* 1. SUCCESS STORIES: Force the stack */
+    .reviews-grid {
+        grid-template-columns: 1fr !important; /* Forces cards into one column */
+        gap: 25px !important;
+        padding: 0 10px !important;
+    }
+
+    /* 2. HEADER: Scale down for small screens */
+    .header-content {
+        padding: 100px 20px 40px; /* Adjusts space around the main logo */
+    }
+
+    .header-logo {
+        width: 120px; /* Keeps the big logo reasonable on mobile */
+        height: auto;
+    }
+
+    .header-content h1 {
+        font-size: 1.8rem;
+        margin-top: 15px;
+    }
+
+    /* 3. WELCOME SECTION: Better spacing for Andrea's card */
+    .welcome-card {
+        padding: 30px 20px;
+        margin: 0 15px;
+        width: auto;
+    }
+
+    .home-hero-img {
+        max-width: 250px; /* Prevents the 'Face' from being too big */
+        margin: 0 auto 20px;
+    }
+
+    /* 4. CONTACT FORM: Responsive inputs */
+    .contact-form {
+        padding: 20px;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+        width: 100% !important;
+        font-size: 16px; /* Prevents iOS from 'zooming in' on the box */
+    }
+
+    /* Ensure the orange submit button is full-width for easy tapping */
+    .btn-primary {
+        width: 100%;
+        padding: 15px;
+    }
+
+    /* 5. FOOTER: Center everything for mobile */
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-nav .separator {
+        display: none; /* Hide the vertical line on mobile */
+    }
+}
