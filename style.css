@@ -1171,13 +1171,7 @@ header p {
         margin-top: 15px;
     }
 
-    /* 3. WELCOME SECTION: Better spacing for Andrea's card */
-    .welcome-card {
-        padding: 30px 20px;
-        margin: 0 15px;
-        width: auto;
-    }
-
+   
        /* 4. CONTACT FORM: Responsive inputs */
     .contact-form {
         padding: 20px;
