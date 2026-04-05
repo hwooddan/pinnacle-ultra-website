@@ -1162,7 +1162,7 @@ header p {
     }
 
     .header-logo {
-        width: 120px; /* Keeps the big logo reasonable on mobile */
+        width: 250px; /* Keeps the big logo reasonable on mobile */
         height: auto;
     }
 
