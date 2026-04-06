@@ -76,36 +76,77 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.error("Sanity Home Error:", err));
 
     /* ==========================================
-       2. SANITY: REVIEWS FETCH
-       ========================================== */
-    const REVIEWS_QUERY = encodeURIComponent(`*[_type == "review"] | order(displayOrder asc){
-      authorName,
-      raceCompleted,
-      quote,
-      "imageUrl": authorImage.asset->url
-    }`);
+   2. SANITY: REVIEWS FETCH & DISPLAY
+   ========================================== */
 
-    const REVIEWS_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${REVIEWS_QUERY}`;
+// Helper: Simple function to convert Sanity "Portable Text" to HTML
+function blocksToHtml(blocks) {
+  if (!blocks) return "";
+  return blocks
+    .map(block => {
+      if (block._type !== "block" || !block.children) return "";
+      // Map through children (text segments) to handle basic formatting
+      const text = block.children.map(child => child.text).join("");
+      return `<p>${text}</p>`;
+    })
+    .join("");
+}
 
-    fetch(REVIEWS_URL)
-      .then(res => res.json())
-      .then(({ result }) => {
-        const container = document.getElementById('reviews-container');
-        if (container && result) {
-            container.innerHTML = result.map(review => `
-                <div class="review-card">
-                    ${review.imageUrl 
-                        ? `<img src="${review.imageUrl}?w=160&h=160&fit=crop" class="review-avatar" alt="${review.authorName}">` 
-                        : `<div class="review-avatar" style="background: var(--p-green-accent); display: flex; align-items: center; justify-content: center;"><i class="fas fa-user" style="color: var(--p-green-main)"></i></div>`
-                    }
-                    <p class="review-quote">"${review.quote}"</p>
-                    <h4 class="review-author">${review.authorName}</h4>
-                    <span class="review-race">${review.raceCompleted || 'Ultra Runner'}</span>
-                </div>
-            `).join('');
-        }
-      })
-      .catch(err => console.error("Sanity Reviews Error:", err));
+const REVIEWS_QUERY = encodeURIComponent(`*[_type == "review"] | order(displayOrder asc) {
+  authorName,
+  raceCompleted,
+  quote,
+  fullStory,
+  "imageUrl": authorImage.asset->url
+}`);
+
+const REVIEWS_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${REVIEWS_QUERY}`;
+
+fetch(REVIEWS_URL)
+  .then(res => res.json())
+  .then(({ result }) => {
+    const container = document.getElementById('reviews-container');
+    if (container && result) {
+      container.innerHTML = result.map((review, index) => `
+        <div class="review-card" id="review-${index}">
+            ${review.imageUrl 
+                ? `<img src="${review.imageUrl}?w=160&h=160&fit=crop" class="review-avatar" alt="${review.authorName}">` 
+                : `<div class="review-avatar" style="background: var(--p-green-accent); display: flex; align-items: center; justify-content: center;"><i class="fas fa-user" style="color: var(--p-green-main)"></i></div>`
+            }
+            <p class="review-quote">"${review.quote}"</p>
+            <h4 class="review-author">${review.authorName}</h4>
+            <span class="review-race">${review.raceCompleted || 'Ultra Runner'}</span>
+
+            <div class="full-story-content" style="display: none; margin-top: 15px; border-top: 1px solid #444; padding-top: 10px; text-align: left;">
+                ${blocksToHtml(review.fullStory)}
+            </div>
+
+            ${review.fullStory ? `
+                <button class="read-more-btn" style="background: none; border: none; color: #ff4e00; cursor: pointer; font-weight: bold; margin-top: 10px; display: block; width: 100%;">
+                    ↓ Read More
+                </button>
+            ` : ''}
+        </div>
+      `).join('');
+
+      // Add click events to all "Read More" buttons
+      document.querySelectorAll('.read-more-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const card = this.closest('.review-card');
+          const content = card.querySelector('.full-story-content');
+          
+          if (content.style.display === "none") {
+            content.style.display = "block";
+            this.innerText = "↑ Show Less";
+          } else {
+            content.style.display = "none";
+            this.innerText = "↓ Read More";
+          }
+        });
+      });
+    }
+  })
+  .catch(err => console.error("Sanity Reviews Error:", err));
 
     /* ==========================================
        3. FORMSPREE: AJAX SUBMISSION

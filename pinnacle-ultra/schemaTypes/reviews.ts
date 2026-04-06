@@ -19,8 +19,17 @@ export default {
       name: 'quote',
       title: 'Testimonial Quote',
       type: 'text',
-      validation: (Rule: any) => Rule.required().min(10).max(300),
+      validation: Rule => Rule.required(),
     },
+
+{
+      name: 'fullStory',
+      title: 'Full Success Story',
+      type: 'array', 
+      of: [{type: 'block'}], // Using Portable Text for better formatting (bold, lists, etc.)
+      description: 'The deep-dive review (Up to 300 words).'
+    },
+
     {
       name: 'authorImage',
       title: 'Runner Photo (Optional)',
