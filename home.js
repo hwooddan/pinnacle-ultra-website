@@ -97,7 +97,7 @@ function blocksToHtml(blocks) {
             // 1. Check for Links (Custom Marks)
             const linkDef = block.markDefs?.find(def => def._key === markId);
             if (linkDef && linkDef.href) {
-              text = `<a href="${linkDef.href}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation(); style="color: #ff4d4d; text-decoration: underline;">${text}</a>`;
+              text = `<a href="${linkDef.href}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="color: #ff4d4d; text-decoration: underline;">${text}</a>`;
             }
 
             // 2. Check for Decorators (Standard Marks)
