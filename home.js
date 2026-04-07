@@ -82,12 +82,43 @@ document.addEventListener('DOMContentLoaded', () => {
 // Helper: Simple function to convert Sanity "Portable Text" to HTML
 function blocksToHtml(blocks) {
   if (!blocks) return "";
+
   return blocks
     .map(block => {
       if (block._type !== "block" || !block.children) return "";
-      // Map through children (text segments) to handle basic formatting
-      const text = block.children.map(child => child.text).join("");
-      return `<p>${text}</p>`;
+
+      const htmlContent = block.children.map(child => {
+        let text = child.text;
+
+        if (child.marks && child.marks.length > 0) {
+          // We loop through every "mark" applied to this specific bit of text
+          child.marks.forEach(markId => {
+            
+            // 1. Check for Links (Custom Marks)
+            const linkDef = block.markDefs?.find(def => def._key === markId);
+            if (linkDef && linkDef.href) {
+              text = `<a href="${linkDef.href}" target="_blank" rel="noopener noreferrer" style="color: #ff4d4d; text-decoration: underline;">${text}</a>`;
+            }
+
+            // 2. Check for Decorators (Standard Marks)
+            if (markId === 'strong') {
+              text = `<strong>${text}</strong>`;
+            }
+            if (markId === 'em') {
+              text = `<em>${text}</em>`;
+            }
+            if (markId === 'underline') {
+              text = `<u style="text-decoration: underline;">${text}</u>`;
+            }
+            if (markId === 'code') {
+              text = `<code style="background: #333; padding: 2px 4px; border-radius: 4px; font-family: monospace;">${text}</code>`;
+            }
+          });
+        }
+        return text;
+      }).join("");
+
+      return `<p style="margin-bottom: 1em; line-height: 1.6;">${htmlContent}</p>`;
     })
     .join("");
 }
