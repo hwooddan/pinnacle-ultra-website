@@ -18,7 +18,14 @@ export default {
       name: 'mainImage',
       type: 'image',
       title: 'Main Image',
-      options: { hotspot: true } // Allows cropping the perfect thumbnail
+      options: { hotspot: true }
+    },
+    /* 1. MOVED AUTHOR HERE: It is now a top-level field */
+    {
+      name: 'author', 
+      title: 'Guest Author',
+      type: 'reference',
+      to: [{ type: 'blogAuthor' }],
     },
     {
       name: 'body',
@@ -26,13 +33,14 @@ export default {
       type: 'array', 
       of: [
         {
-          type: 'block' // This handles the standard text, bolding, lists, etc.
+          type: 'block' 
         },
         {
           type: 'image',
           options: { hotspot: true },
           title: 'Inline Image'
         }
+       
       ]
     }
   ]

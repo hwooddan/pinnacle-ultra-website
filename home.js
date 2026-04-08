@@ -133,6 +133,12 @@ const REVIEWS_QUERY = encodeURIComponent(`*[_type == "review"] | order(displayOr
 
 const REVIEWS_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${REVIEWS_QUERY}`;
 
+/* ==========================================
+   2. SANITY: REVIEWS FETCH & DISPLAY
+   ========================================== */
+
+// ... (Keep your blocksToHtml function exactly as it is above) ...
+
 fetch(REVIEWS_URL)
   .then(res => res.json())
   .then(({ result }) => {
@@ -148,33 +154,50 @@ fetch(REVIEWS_URL)
             <h4 class="review-author">${review.authorName}</h4>
             <span class="review-race">${review.raceCompleted || 'Ultra Runner'}</span>
 
-            <div class="full-story-content" style="display: none; margin-top: 15px; border-top: 1px solid #444; padding-top: 10px; text-align: left;">
+            <div class="full-story-content" style="display: none; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; text-align: left;">
                 ${blocksToHtml(review.fullStory)}
             </div>
 
             ${review.fullStory ? `
-                <button class="read-more-btn" style="background: none; border: none; color: #ff4e00; cursor: pointer; font-weight: bold; margin-top: 10px; display: block; width: 100%;">
+                <button class="review-read-more">
                     ↓ Read More
                 </button>
             ` : ''}
         </div>
       `).join('');
 
-      // Add click events to all "Read More" buttons
-      document.querySelectorAll('.read-more-btn').forEach(button => {
-        button.addEventListener('click', function() {
-          const card = this.closest('.review-card');
-          const content = card.querySelector('.full-story-content');
-          
-          if (content.style.display === "none") {
+      /* Update the click events in your reviews.js */
+document.querySelectorAll('.review-read-more').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault(); // Safety first: prevents any default jumps
+        
+        const card = this.closest('.review-card');
+        const content = card.querySelector('.full-story-content');
+        
+        if (content.style.display === "none") {
+            // OPENING
             content.style.display = "block";
             this.innerText = "↑ Show Less";
-          } else {
+            
+            // Optional: Smoothly center the card so they can start reading
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            // CLOSING
+            // First, we scroll the window back to the top of THIS card
+            const offset = 120; // Accounts for your frosty nav bar height
+            const cardTop = card.getBoundingClientRect().top + window.pageYOffset - offset;
+            
+            window.scrollTo({
+                top: cardTop,
+                behavior: 'smooth'
+            });
+
+            // Then we hide the content
             content.style.display = "none";
             this.innerText = "↓ Read More";
-          }
-        });
-      });
+        }
+    });
+});
     }
   })
   .catch(err => console.error("Sanity Reviews Error:", err));
