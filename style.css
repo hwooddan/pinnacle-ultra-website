@@ -1,3 +1,27 @@
+/* 
+   TABLE OF CONTENTS
+   ---------------------------------------
+   1. Root Variables
+   2. Global Styles
+   3. Master Buttons
+   4. Navigation (Frosty Nav)
+   5. Hero Section
+   6. Home Page / Welcome Section
+   7. Blog Feed & Cards
+   8. Single Post Detail
+   9. Bio Section & Layout
+   10. Race History Tiles
+   11. Credentials & Tags
+   12. Reviews & Testimonials
+   13. Contact Section
+   14. Social Media Icons
+   15. Footer
+   16. Page Specific Tweaks
+*/
+
+/* ==========================================================================
+   1. ROOT VARIABLES
+   ========================================================================== */
 :root {
     /* --- 1. BRAND COLORS --- */
     --p-green-main: #0c5f12;
@@ -14,7 +38,9 @@
     --p-orange-main: #FF4E00; /* Vibrant Sunset Orange */
     --p-orange-main-rgb: 255, 78, 0; /* Vibrant Sunset Orange */
     --p-orange-hover: #E64600;  /* Slightly deeper for the hover effect */
-    --P-grey-light: #d4d7d4;
+    --p-grey-light: #d4d7d4;
+    --brand-green-deep: var(--p-green-alpine);
+    --brand-green-light: var(--p-green-accent);
     
     /* Function dials */
     --body-font: var(--p-font-stack); 
@@ -44,14 +70,14 @@
    
     /* Theme Colors */
     --bg-main: #ffffff;
-    --bg-alt: #f4f4f4;
+    --bg-alt: #f8f8f8;
     --hero-img-bg: #e7e1e1; /* Fallback for the hero image */
     --text-muted: #666666;
     --card-bg: #ffffff;
 
     /* --- 2. NAVIGATION (THE FROST) --- */
     --nav-height: 85px;
-    --nav-padding: 22px;
+    --nav-padding: 12px;
     --nav-blur: 18px;
     --nav-opacity-scrolled: 0.8;
     --nav-border: rgba(255, 255, 255, 0.1);
@@ -80,6 +106,9 @@
     }
 }
 
+/* ==========================================================================
+   2. GLOBAL STYLES
+   ========================================================================== */
 /* GLOBAL RESET */
 * {
     box-sizing: border-box;
@@ -104,6 +133,9 @@ body {
     overflow-x: clip;
 }
 
+/* ==========================================================================
+   3. MASTER BUTTONS
+   ========================================================================== */
 /* --- MASTER BUTTON WIRING --- */
 
 .btn-primary, 
@@ -148,12 +180,11 @@ button[type="submit"]:active,
 .contact-form .btn-primary:active { /* FIXED: Added missing :active tags */
     transform: translateY(-1px);
 }
-/* ==========================================
-   ZONE 2: THE UNIFIED FROSTY NAV (LAYOUT FIX)
-   ========================================== */
-
+/* ==========================================================================
+   4. NAVIGATION (THE FROSTY NAV)
+   ========================================================================== */
 .main-nav {
-    background: var(--nav-bg) !important;
+    background: linear-gradient(180deg, rgba(5, 38, 8, 0.85) 0%, rgba(12, 95, 18, 0.85) 100%) !important;
     -webkit-backdrop-filter: blur(var(--nav-blur)) saturate(110%) !important;
     backdrop-filter: blur(var(--nav-blur)) saturate(110%) !important;
     
@@ -259,7 +290,6 @@ button[type="submit"]:active,
         display: block; /* Show the hamburger */
     }
 
-   @media (max-width: 768px) {
     .nav-menu {
         position: fixed;
         top: 85px; 
@@ -267,8 +297,7 @@ button[type="submit"]:active,
         width: 100%;
         height: auto;
         background: var(--nav-bg);
-        -webkit-backdrop-filter: blur(18px); /* Add this right above the regular one */
-        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(var(--nav-blur));
         backdrop-filter: blur(var(--nav-blur));
         flex-direction: column !important;
         padding: 40px 0 !important;
@@ -286,8 +315,6 @@ button[type="submit"]:active,
     .nav-menu.active {
         transform: translateX(0); /* Slide it back to the center */
     }
-}
-
     /* Make the links big and easy to tap with a thumb */
     .nav-menu li a {
         font-size: 1.2rem !important;
@@ -295,9 +322,7 @@ button[type="submit"]:active,
         width: 100%;
         text-align: center;
     }
-}
 
-@media (max-width: 768px) {
     .main-nav .nav-container {
         width: 100% !important;
         max-width: 100vw !important;
@@ -306,7 +331,9 @@ button[type="submit"]:active,
     }
 }
 
-/* 2. THE HERO SECTION (KEEP THIS PART!) */
+/* ==========================================================================
+   5. HERO SECTION
+   ========================================================================== */
 header {
     padding-top: 100px; 
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), 
@@ -344,10 +371,9 @@ header p {
     filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
 }
 
-/* ==========================================
-   ZONE 4: HOME PAGE (WELCOME SECTION)
-   ========================================== */
-
+/* ==========================================================================
+   6. HOME PAGE (WELCOME SECTION)
+   ========================================================================== */
 .welcome-section {
     display: flex;
     justify-content: center;
@@ -397,7 +423,7 @@ header p {
 }
 
 #home-title {
-    color: var(--title-main);
+    color: var(--p-green-alpine);
     font-size: 2.2rem;
     font-weight: 800;
 }
@@ -420,10 +446,9 @@ header p {
     opacity: 0.7;
     text-decoration: none; /* Clean look on hover */
 }
-/* ==========================================
-    ZONE 5: BLOG STYLES (CLEANED & MERGED)
-   ========================================== */
-
+/* ==========================================================================
+   7. BLOG STYLES & FEED
+   ========================================================================== */
 .blog-feed {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -453,8 +478,8 @@ header p {
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    border: 2px solid var(--p-orange-main);
-    box-shadow: 0 4px 12px (var(--p-green-main), 0.3););
+        border: 2px solid var(--p-orange-main);
+    box-shadow: 0 4px 12px rgba(var(--p-green-main-rgb), 0.3);
     z-index: 30;   /* Sits above the image and the content */
     cursor: pointer;
     background: white; /* Prevents seeing through the badge if image loads slow */
@@ -570,28 +595,25 @@ header p {
     z-index: 101; /* Jumps in front of everything when hovered */
 }
 
-/* ==========================================
-   ZONE 5b: SINGLE POST DETAIL (THE WAFFLE)
-   ========================================== */
-
-/* ==========================================
-   ZONE 5b: SINGLE POST DETAIL (THE REFINED VIEW)
-   ========================================== */
-
+/* ==========================================================================
+   8. SINGLE POST DETAIL
+   ========================================================================== */
 .full-post-container {
     max-width: 800px;
     /* PUSH DOWN: Increased from 100px to 160px to clear the fixed nav */
     margin: 160px auto 60px; 
-    padding: 0 25px;
+    padding: 40px 25px 40px; /* Increased top padding to 90px (from 60px) */
     width: 100%;
     /* Ensure nothing inside this container overlaps the nav */
     position: relative;
     z-index: 1;
+    background-color: var(--bg-alt);
+    border-radius: 12px;
 }
 
 .full-post-img {
     display: block;
-    margin: 0 auto 30px;    
+    margin: 0 auto 30px;    /* Reverted top margin to 0, relying on container padding */
     width: 100%;
     /* DIALED DOWN: Shrunk to 350px for a sleek, fast-loading look */
     max-width: 350px;       
@@ -622,6 +644,7 @@ header p {
 .post-footer {
     text-align: center;
     padding-top: 40px;
+    padding-bottom: 20px; /* This was already working for the button bottom spacing */
     border-top: 1px solid rgba(0,0,0,0.1);
 }
 
@@ -667,10 +690,9 @@ header p {
     box-shadow: 0 2px 8px rgba(231, 111, 81, 0.3);
 }
 
-/* ==========================================
-    ZONE 6 & 7: THE PERFECT BIO LAYOUT
-   ========================================== */
-
+/* ==========================================================================
+   9. BIO SECTION & LAYOUT
+   ========================================================================== */
 /* 1. THE BASE (Mobile first - handles both Mobile and PC shared styles) */
 .bio-container {
     max-width: 1200px;
@@ -698,7 +720,7 @@ header p {
 
 #author-name {
     font-size: clamp(2.2rem, 5vw, 2.8rem);
-    color: var(--brand-green-deep);
+    color: var(--p-green-alpine);
     margin-top: 0;
     margin-bottom: 15px;
 }
@@ -746,10 +768,9 @@ header p {
         padding-top: 110px; /* Less space needed on mobile */
     }
 }
-/* ==========================================
-   ZONE 9: RACE HISTORY TILES
-   ========================================== */
-
+/* ==========================================================================
+   10. RACE HISTORY TILES
+   ========================================================================== */
 .race-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
@@ -877,6 +898,9 @@ header p {
     
 }
 
+/* ==========================================================================
+   11. CREDENTIALS & TAGS
+   ========================================================================== */
 /* 1. THE PARENT (The Bus Driver) - This handles the stacking/wrapping */
 .credentials-list {
     display: flex !important;
@@ -904,10 +928,9 @@ header p {
     transform: translateY(-2px);
 }
 
-/* ==========================================
-   ZONE 8: REVIEWS & TESTIMONIALS (CLEAN & JAZZY)
-   ========================================== */
-
+/* ==========================================================================
+   12. REVIEWS & TESTIMONIALS
+   ========================================================================== */
 .reviews-section {
     min-height: 600px; 
     display: flex;
@@ -923,7 +946,7 @@ header p {
 
 .section-title h2 {
     font-size: 2.5rem;
-    color: var(--brand-green-deep);
+    color: var(--p-green-alpine);
     margin-bottom: 40px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -1017,8 +1040,9 @@ header p {
     border-color: var(--p-orange-main);
 }
 
-/* CONTACT SECTION --- */
-
+/* ==========================================================================
+   13. CONTACT SECTION
+   ========================================================================== */
 .contact-section {
     /* Top | Left/Right | Bottom */
     padding: 20px 0 20px 0; /* Reduced the 80px to 20px */
@@ -1160,10 +1184,9 @@ header p {
     }
 }
 
-/* ==========================================
-   SOCIAL MEDIA ICON STYLES
-   ========================================== */
-
+/* ==========================================================================
+   14. SOCIAL MEDIA ICONS
+   ========================================================================== */
 /* This targets the specific Font Awesome Instagram class */
 .fa-instagram {
     /* 1. Official Instagram Gradient */
@@ -1186,10 +1209,9 @@ header p {
     transform: scale(1.15) rotate(5deg);
 }
 
-/* ==========================================
-   ZONE 10: THE MODERN REFINED FOOTER
-   ========================================== */
-
+/* ==========================================================================
+   15. FOOTER (MODERN REFINED)
+   ========================================================================== */
 #FINAL_FOOTER_ANCHOR {
     position: relative !important;
     display: block !important;
@@ -1260,15 +1282,22 @@ header p {
     }
 }
     
-/* ==========================================
-   BIO PAGE SPACING ONLY
-   ========================================== */
-
+/* ==========================================================================
+   16. PAGE SPECIFIC TWEAKS
+   ========================================================================== */
 /* This pushes the bio content down so it doesn't hide under the frosty nav */
 .bio-container {
     padding-top: 140px !important; 
     margin-top: 0 !important;
+    background-color: var(--bg-alt); /* Apply darker background to About page */
 }
 
-/* We don't need the nav-back-link rule anymore because the 
-   Unified Nav we just built handles all the links perfectly! */
+#blog-posts {
+    background-color: var(--bg-alt); /* Apply darker background to Blog page */
+}
+
+.full-post-container {
+    background-color: var(--bg-alt); /* Apply darker background to Single Post page */
+}
+
+
