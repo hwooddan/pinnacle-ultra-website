@@ -239,11 +239,11 @@ button[type="submit"]:active,
     display: flex;
     align-items: center; /* Vertically centers the icon with the text */
     text-decoration: none; /* Removes the underline from the link */
-    gap: 10px; /* Space between the icon and the text */
+    gap: 12px; /* Space between the icon and the text */
 }
 
 .nav-icon {
-    height: 40px; /* Adjust this to fit your nav bar height */
+    height: 45px; /* Adjust this to fit your nav bar height */
     width: auto;  /* Keeps the aspect ratio perfect */
     border-radius: 4px; /* Optional: adds a slight roundness to the icon */
 }
