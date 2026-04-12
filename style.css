@@ -1300,4 +1300,15 @@ header p {
     background-color: var(--bg-alt); /* Apply darker background to Single Post page */
 }
 
+/* This targets users who have Dark Mode turned on in their system */
+@media (prefers-color-scheme: dark) {
+    .header-image, .nav-icon img {
+        /* Boosts the brightness and saturation to stop it looking 'washed out' */
+        filter: brightness(1.1) saturate(1.2);
+        
+        /* Optional: adds a tiny 'glow' to help it pop off the dark background */
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
+    }
+}
+
 
