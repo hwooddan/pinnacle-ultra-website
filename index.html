@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
+
     <title>Pinnacle Ultra</title>
     <meta name="description" content="Welcome to Pinnacle Ultra, dedicated to all things Ultra Running. From route choices, nutrition and kit advice, through to one2one or group coaching opportunities...see you on the hills!">
+    
+    <link rel="preconnect" href="https://wpo056ht.api.sanity.io" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     </head>
@@ -37,12 +43,15 @@
     </div>
 </nav>
         <div class="header-content">
-        <img src="/images/pinnacleultra-header-logo.svg" alt="Pinnacle Ultra Logo" class="header-logo">
+        <img src="/images/pinnacleultra-header-logo.svg" alt="Pinnacle Ultra Logo" class="header-logo" width="300" 
+  height="300" fetchpriority="high">
         <h1>Pinnacle Ultra Coaching</h1>
         <p>Reach your ultra-running goals</p>
       </div>
    
 </header>
+
+<main>
 
 <section class="welcome-section">
     <div class="welcome-card" id="about-andrea">
@@ -114,6 +123,8 @@
         }
     });
 </script>
+
+</main>
 
 
 <footer id="FINAL_FOOTER_ANCHOR" class="main-footer">
