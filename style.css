@@ -50,10 +50,9 @@
     --heading-color: var(--p-green-main);
     --nav-bg: rgba(var(--p-green-main-rgb), var(--nav-opacity));
     --nav-opacity: 0.8; /* Increased for a richer Alpine look */
-
+    --link-color: var(--p-green-alpine);
     --btn-text: var(--p-white);
-    --footer-bg: rgb(var(--p-orange-main-rgb)); 
-    
+    --footer-bg: rgb(var(--p-orange-main-rgb));     
     --pill-bg: var(--p-orange-main);
     --pill-text: var(--p-white);
 
