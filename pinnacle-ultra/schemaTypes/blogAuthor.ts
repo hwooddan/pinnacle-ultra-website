@@ -17,8 +17,35 @@ export default {
     {
       name: 'bio',
       title: 'Mini Bio',
-      type: 'text', // A short 2-3 sentence description
-    },
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [], 
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+            ],
+            annotations: [
+              {
+                title: 'URL',
+                name: 'link',
+                type: 'object',
+                fields: [
+                  {
+                    title: 'URL',
+                    name: 'href',
+                    type: 'url',
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    }, // Bio field ends here
     {
       name: 'instagram',
       title: 'Instagram URL',
