@@ -1,8 +1,34 @@
-/* blog.js - FULLY INTEGRATED WITH GUEST AUTHOR POPUPS */
+/* blog.js - FULLY INTEGRATED WITH PORTABLE TEXT BIOS */
 const PROJECT_ID = "wpo056ht"; 
 const DATASET = "production";
 
-// 1. Updated QUERY: Reaches into the 'author' reference to get 'blogAuthor' data
+// 1. HELPER FUNCTION: Converts Sanity Bio (Array) to HTML String
+function renderBio(blocks) {
+  if (!blocks || !Array.isArray(blocks)) return blocks || "Guest contributor at Pinnacle Ultra.";
+  
+  return blocks.map(block => {
+    if (block._type !== 'block' || !block.children) return '';
+
+    return block.children.map(child => {
+      let text = child.text;
+
+      // Handle Bold/Italic and Links
+      if (child.marks && child.marks.length > 0) {
+        child.marks.forEach(mark => {
+          // Check if it's a link
+          const link = block.markDefs?.find(def => def._key === mark);
+          if (link && link._type === 'link') {
+            text = `<a href="${link.href}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${text}</a>`;
+          }
+          if (mark === 'strong') text = `<strong>${text}</strong>`;
+          if (mark === 'em') text = `<em>${text}</em>`;
+        });
+      }
+      return text;
+    }).join('');
+  }).join('<br>');
+}
+
 const QUERY = encodeURIComponent(`*[_type == "post"]{
   title,
   "slug": slug.current,
@@ -26,24 +52,26 @@ if (blogFeed) {
       .then((res) => res.json())
       .then(({ result }) => {
         if (result && result.length > 0) {
-          
           blogFeed.innerHTML = ""; 
           result.forEach((post) => {
             const postCard = document.createElement("div");
             postCard.classList.add("post-card");
             
-            // 2. Author Fallback Logic
-            const authorPhoto = post.author?.imageUrl || './images/default-avatar.png';
-            const authorName = post.author?.name || 'Guest Author';
-            const authorBio = post.author?.bio || "Guest contributor at Pinnacle Ultra.";
+           const hasPhoto = !!post.author?.imageUrl; // true if photo exists, false if not
+           const authorPhoto = hasPhoto ? post.author.imageUrl : './images/logo-white-border (1).png';
+           const placeholderClass = hasPhoto ? "" : "is-placeholder";
+
+           const authorName = post.author?.name || 'Guest Author'; 
+           const authorBio = renderBio(post.author?.bio);
+            
+            
             const andreaLink = authorName.toLowerCase().includes("andrea") 
     ? ` <a href="about.html" class="bio-more-link" onclick="event.stopPropagation()">Meet Andrea →</a>` 
     : "";
 
-            // 3. The HTML: Now includes the 'onclick' trigger and the hidden Bio Popup
             postCard.innerHTML = `
                 <div class="author-badge" onclick="toggleBio(event, this)">
-                    <img src="${authorPhoto}" alt="${authorName}" title="Click to see bio">
+                    <img src="${authorPhoto}" class="${placeholderClass}" alt="${authorName}" title="Click to see bio">
                     
                     <div class="author-bio-popup">
                         <h4>${authorName}</h4>
@@ -71,27 +99,17 @@ if (blogFeed) {
       .catch((err) => console.error("Blog Error:", err));
 }
 
-/**
- * TOGGLE BIO FUNCTION
- * Handles the opening/closing of the guest author popup
- */
 function toggleBio(event, element) {
-    // 1. Prevents the browser from following the blog link or refreshing
     event.preventDefault(); 
     event.stopPropagation(); 
     
-    console.log("Author badge clicked!");
-
-    // 2. Close any other open bios first so they don't overlap
     document.querySelectorAll('.author-badge').forEach(b => {
         if (b !== element) b.classList.remove('active');
     });
 
-    // 3. Toggle the 'active' class on the clicked badge
     element.classList.toggle('active');
 }
 
-// Close the bio if the user clicks anywhere else on the empty page
 document.addEventListener('click', () => {
     document.querySelectorAll('.author-badge').forEach(b => b.classList.remove('active'));
 });

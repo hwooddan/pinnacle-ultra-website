@@ -1,4 +1,4 @@
-/* post-details.js - UPDATED FOR INLINE IMAGES */
+/* post-details.js - FULLY FORMATTED WITH LINKS & IMAGES */
 const PROJECT_ID = "wpo056ht"; 
 const DATASET = "production";
 
@@ -6,7 +6,6 @@ const urlParams = new URLSearchParams(window.location.search);
 const slug = urlParams.get("slug");
 
 if (slug) {
-    // UPDATED QUERY: Now fetches URLs for any images found inside the 'body' array
     const QUERY = encodeURIComponent(`*[_type == "post" && slug.current == "${slug}"][0]{
         title,
         "imageUrl": mainImage.asset->url + "?auto=format",
@@ -25,20 +24,37 @@ if (slug) {
       .then(({ result }) => {
         if (result) {
             const container = document.getElementById('post-content');
-            
-            let bodyHTML = "Content is being updated...";
-            
+            let bodyHTML = "";
+
             if (result.body && Array.isArray(result.body)) {
-                // NEW LOGIC: Loop through every block in the body
                 bodyHTML = result.body.map(block => {
                     
-                    // 1. If it's a standard text block, wrap it in <p> tags
+                    // 1. UPDATED TEXT BLOCK HANDLER (Handles Links, Bold, Emphasis)
                     if (block._type === 'block') {
-                        const text = block.children ? block.children.map(child => child.text).join('') : '';
-                        return `<p>${text}</p>`;
+                        const combinedText = (block.children || []).map(child => {
+                            let text = child.text;
+
+                            // If this piece of text has formatting (marks)
+                            if (child.marks && child.marks.length > 0) {
+                                child.marks.forEach(mark => {
+                                    // Handle Links: Look for the URL in markDefs
+                                    const linkDef = block.markDefs?.find(def => def._key === mark);
+                                    if (linkDef && linkDef._type === 'link') {
+                                        text = `<a href="${linkDef.href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+                                    }
+                                    // Handle Bold
+                                    if (mark === 'strong') text = `<strong>${text}</strong>`;
+                                    // Handle Italic
+                                    if (mark === 'em') text = `<em>${text}</em>`;
+                                });
+                            }
+                            return text;
+                        }).join('');
+
+                        return `<p>${combinedText}</p>`;
                     }
                     
-                    // 2. If it's an image block, create an <img> tag with the inline class
+                    // 2. IMAGE BLOCK HANDLER
                     if (block._type === 'image' && block.url) {
                         return `<img src="${block.url}?w=800&auto=format" class="inline-post-img" alt="Blog Image">`;
                     }
@@ -46,8 +62,8 @@ if (slug) {
                     return '';
                 }).join('');
 
-            } else if (typeof result.body === 'string') {
-                bodyHTML = `<p>${result.body}</p>`;
+            } else {
+                bodyHTML = `<p>Content is currently unavailable.</p>`;
             }
 
             // INJECT CONTENT
@@ -57,7 +73,6 @@ if (slug) {
                 <div class="post-body-text">
                     ${bodyHTML}
                 </div>
-                
                 <div class="post-footer">
                     <a href="blog.html" class="btn-accent btn-large">← Back to Ultra Ramblings</a>
                 </div>
@@ -68,6 +83,6 @@ if (slug) {
       })
       .catch(err => {
           console.error("Post Details Error:", err);
-          document.getElementById('post-content').innerHTML = "<p>Error loading post. Please try again later.</p>";
+          document.getElementById('post-content').innerHTML = "<p>Error loading post.</p>";
       });
 }

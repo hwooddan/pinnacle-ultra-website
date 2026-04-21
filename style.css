@@ -472,13 +472,16 @@ header p {
 }
 
 .author-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     top: -30px;    /* Sits halfway off the top of the card */
     right: 20px;
     width: 65px;
     height: 65px;
     border-radius: 50%;
-        border: 2px solid var(--p-orange-main);
+    border: 2px solid var(--p-orange-main);
     box-shadow: 0 4px 12px rgba(var(--p-green-main-rgb), 0.3);
     z-index: 30;   /* Sits above the image and the content */
     cursor: pointer;
@@ -490,6 +493,32 @@ header p {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+}
+
+/* 1. Target the image ONLY when it is a placeholder */
+.author-badge img.is-placeholder {
+    display: block;        /* Kills the 'invisible gap' at the bottom of images */
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+    
+    /* THE ZOOM: Set to 1.45 as requested */
+    transform: scale(1.45); 
+    transform-origin: center center;
+
+    /* THE MANUAL NUDGE: Adjust these 1px at a time */
+    position: relative;
+    top: 0px;  /* Moves it UP (negative) or DOWN (positive) */
+    left: 0px;  /* Moves it LEFT (negative) or RIGHT (positive) */
+    
+    /* Ensure no rounding clips the edges of the logo before it's scaled */
+    border-radius: 0;
+}
+
+
+/* 3. Subtle hover interaction */
+.author-badge:hover img.is-placeholder {
+    transform: scale(1.55); /* Makes the logo 'pulse' slightly when hovered */
 }
 
 /* --- THE BIO POPUP STYLES --- */
@@ -689,6 +718,41 @@ header p {
     color: white !important;
     box-shadow: 0 2px 8px rgba(231, 111, 81, 0.3);
 }
+/* --- New Content Styling --- */
+
+/* Give paragraphs breathing room */
+.post-body-text p {
+    line-height: 1.8;
+    margin-bottom: 25px; /* Spacing between paragraphs */
+    font-size: 1.1rem;
+    color: inherit; /* Inherits from your body/theme color */
+}
+
+/* Style the new links we just enabled */
+.post-body-text a {
+    color: var(--p-green-alpine); 
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.post-body-text a:hover {
+    color: var(--p-orange-main); /* Changes to orange on hover for that "Pinnacle" feel */
+}
+
+/* Ensure bold and italic stand out */
+.post-body-text strong {
+    font-weight: 800;
+    color: var(--p-green-alpine); /* Subtle brand touch on bold text */
+}
+
+.post-body-text em {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+
 
 /* ==========================================================================
    9. BIO SECTION & LAYOUT
