@@ -12,8 +12,109 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preload" as="image" href="/images/pinnacleultra-header-logo.svg" type="image/svg+xml" fetchpriority="high">
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000" fetchpriority="high">
-    <link rel="stylesheet" href="style.css">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Pinnacle Ultra</title>
+<meta name="description" content="Welcome to Pinnacle Ultra, dedicated to all things Ultra Running. From route choices, nutrition and kit advice, through to one2one or group coaching opportunities...see you on the hills!">
+<link rel="preconnect" href="https://wpo056ht.api.sanity.io" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="preload" as="image" href="/images/pinnacleultra-header-logo.svg" type="image/svg+xml" fetchpriority="high">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000" fetchpriority="high">
+
+<style>
+/* CRITICAL CSS FOR LCP */
+:root {
+  --p-white: #ffffff;
+  --p-text-dim: rgba(255, 255, 255, 0.7);
+  --p-font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --body-font: var(--p-font-stack);
+  --p-green-main: #0c5f12; /* Only if used in header text directly */
+  --p-green-alpine: #052608; /* Only if used in header text directly */
+  --text-main: #333333; /* For global styles */
+  --bg-main: #ffffff; /* For global styles */
+  --size-h1: 3.5rem; /* for header h1 */
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* for header h1 */
+}
+
+/* DARK MODE OVERRIDES (Critical if header changes in dark mode) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: #121212;
+    --text-main: #e0e0e0;
+    --p-green-alpine: #00ffcc; /* If h1/p use this in dark mode */
+  }
+}
+
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+html, body {
+  overflow-x: clip;
+  width: 100%;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font);
+  overflow-x: clip;
+}
+
+/* HERO SECTION - Directly impacting LCP */
+header {
+  padding-top: 100px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),
+                    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000');
+  background-size: cover;
+  background-position: center;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+header h1 {
+  color: var(--p-white) !important;
+  font-size: 3.5rem; /* Using hardcoded value based on --size-h1, or keep var */
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+header p {
+  color: var(--p-white) !important;
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.header-logo {
+  display: block;
+  width: 300px;
+  max-width: 80%;
+  height: auto;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
+}
+</style>
+
+<link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+media="print" onload="this.media='all'">
+</head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
       media="print" onload="this.media='all'">
     </head>
