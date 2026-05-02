@@ -148,7 +148,8 @@ fetch(REVIEWS_URL)
         <div class="review-card" id="review-${index}">
             ${review.imageUrl 
                 ? `<img src="${review.imageUrl}?w=160&h=160&fit=crop" class="review-avatar" alt="${review.authorName}">` 
-                : `<div class="review-avatar" style="background: var(--p-green-accent); display: flex; align-items: center; justify-content: center;"><i class="fas fa-user" style="color: var(--p-green-main)"></i></div>`
+                                : `<div class="review-avatar" style="background: var(--p-green-accent); display: flex; align-items: center; justify-content: center;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--p-green-main)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>`
+
             }
             <p class="review-quote">"${review.quote}"</p>
             <h4 class="review-author">${review.authorName}</h4>
