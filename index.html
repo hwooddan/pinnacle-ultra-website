@@ -97,7 +97,17 @@ header p { color: var(--p-white) !important; font-size: 1.5rem; line-height: 1.6
 /* CLS FIX FOR WELCOME CARD */
 .welcome-section { padding: 60px 20px; background-color: var(--bg-alt); min-height: 600px; display: flex; justify-content: center; }
 .welcome-card { background: #fff; padding: 40px; border-radius: 15px; text-align: center; width: 100%; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.home-hero-img { width: 350px; height: 350px; max-width: 80vw; border-radius: 50%; object-fit: cover; background: #eee; display: block; margin: 0 auto 20px; }
+.home-hero-img {
+  width: 350px;
+  height: 350px;
+  max-width: 80vw;
+  aspect-ratio: 1 / 1; /* LOCKS the shape */
+  object-fit: cover;   /* PREVENTS resizing */
+  border-radius: 50%;
+  background: #eee;
+  display: block;
+  margin: 0 auto 20px;
+}
 #home-title { min-height: 2.2rem; margin: 10px 0; color: var(--p-green-alpine); font-weight: 800; font-size: 2.2rem; }
 #home-text { min-height: 100px; line-height: 1.6; font-size: 1.1rem; color: #333; }
 </style>
