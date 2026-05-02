@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // THE OVERWRITE LINE WAS REMOVED FROM HERE
             }
 
-            if (img && result.imageUrl) img.src = result.imageUrl + "?w=600";
+            if (img && result.imageUrl) img.src = result.imageUrl + "?w=400&h=400&fit=crop&auto=format";
         }
       })
       .catch(err => console.error("Sanity Home Error:", err));
