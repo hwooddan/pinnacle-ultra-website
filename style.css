@@ -405,7 +405,7 @@ header p {
     /* 3. Keep the rest of your styles */
     border-radius: 50%;
     object-fit: cover;
-    border: 12px solid var(--bg-alt);
+    border: 6px solid var(--p-orange-main);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     
     /* 4. Ensure it's centered */
