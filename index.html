@@ -25,54 +25,30 @@
 <link rel="preload" as="image" href="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000" fetchpriority="high">
 
 <style>
-/* CRITICAL CSS FOR LCP & CLS (extracted from style.css) */
+/* CRITICAL CSS FOR LCP & CLS */
 :root {
   --p-white: #ffffff;
   --p-text-dim: rgba(255, 255, 255, 0.7);
   --p-font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --body-font: var(--p-font-stack);
-  --p-green-main: #0c5f12; /* Only if used in header text directly */
-  --p-green-alpine: #052608; /* Only if used in header text directly */
-  --text-main: #333333; /* For global styles */
-  --bg-main: #ffffff; /* For global styles */
-  --size-h1: 3.5rem; /* for header h1 */
-  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* for header h1 */
+  --p-green-main: #0c5f12;
+  --p-green-alpine: #052608;
+  --text-main: #333333;
+  --bg-main: #ffffff;
+  --bg-alt: #f8f8f8;
+  --size-h1: 3.5rem;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* DARK MODE OVERRIDES (Critical if header changes in dark mode) */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg-main: #121212;
-    --text-main: #e0e0e0;
-    --p-green-alpine: #00ffcc; /* If h1/p use this in dark mode */
-  }
+  :root { --bg-main: #121212; --text-main: #e0e0e0; --p-green-alpine: #00ffcc; }
 }
 
-/* GLOBAL RESET */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background-color: var(--bg-main); color: var(--text-main); }
+html, body { overflow-x: clip; width: 100%; position: relative; }
+body { margin: 0; padding: 0; font-family: var(--body-font); }
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--bg-main);
-  color: var(--text-main);
-}
-
-html, body {
-  overflow-x: clip;
-  width: 100%;
-  position: relative;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--body-font);
-  overflow-x: clip;
-}
-
-/* HERO SECTION - Directly impacting LCP */
 header {
   padding-top: 100px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),
@@ -86,33 +62,10 @@ header {
   text-align: center;
 }
 
-header h1 {
-  color: var(--p-white) !important;
-  font-size: 3.5rem;
-  line-height: 1.2; /* Added for CLS fix */
-  text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin: 0;
-}
+header h1 { color: var(--p-white) !important; font-size: 3.5rem; line-height: 1.2; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); text-transform: uppercase; letter-spacing: 3px; margin: 0; }
+header p { color: var(--p-white) !important; font-size: 1.5rem; line-height: 1.6; margin-top: 10px; }
+.header-logo { display: block; width: 300px; max-width: 80%; height: auto; margin: 0 auto 20px; filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5)); }
 
-header p {
-  color: var(--p-white) !important;
-  font-size: 1.5rem;
-  line-height: 1.6; /* Added for CLS fix */
-  margin-top: 10px;
-}
-
-.header-logo {
-  display: block;
-  width: 300px;
-  max-width: 80%;
-  height: auto;
-  margin: 0 auto 20px;
-  filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
-}
-
-/* Minimal Critical CSS for Navigation (Mobile First) */
 .main-nav {
     background: linear-gradient(180deg, rgba(5, 38, 8, 0.85) 0%, rgba(12, 95, 18, 0.85) 100%) !important;
     -webkit-backdrop-filter: blur(18px) saturate(110%) !important;
@@ -127,82 +80,36 @@ header p {
     transition: all 0.3s ease !important;
 }
 
-.main-nav .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-}
+.main-nav .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; }
+.menu-toggle { display: none; background: none; border: none; color: var(--p-white); font-size: 1.8rem; cursor: pointer; z-index: 10001; }
 
-.menu-toggle {
-    display: none; /* Hidden on Desktop */
-    background: none;
-    border: none;
-    color: var(--p-white);
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 10001;
-}
-
-/* Mobile Styles for Hamburger Menu */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Show the hamburger */
-    }
+    .menu-toggle { display: block; }
     .nav-menu {
-        position: fixed;
-        top: 85px;
-        right: 0;
-        width: 100%;
-        height: auto;
-        background: rgba(12, 95, 18, 0.8);
-        -webkit-backdrop-filter: blur(18px);
-        backdrop-filter: blur(18px);
-        flex-direction: column !important;
-        padding: 40px 0 !important;
-        gap: 30px !important;
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        z-index: 10000;
+        position: fixed; top: 85px; right: 0; width: 100%; height: auto;
+        background: rgba(12, 95, 18, 0.8); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+        flex-direction: column !important; padding: 40px 0 !important; gap: 30px !important;
+        transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 10000;
     }
-    .nav-menu.active {
-        transform: translateX(0);
-    }
-    .main-nav .nav-container {
-        width: 100% !important;
-        max-width: 100vw !important;
-        padding: 0 20px !important;
-        overflow: hidden;
-    }
+    .nav-menu.active { transform: translateX(0); }
+    .main-nav .nav-container { width: 100% !important; max-width: 100vw !important; padding: 0 20px !important; overflow: hidden; }
 }
 
-/* Logo/text styles that are always visible */
-.logo-group {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    gap: 10px;
-}
-.nav-icon {
-    height: 40px;
-    width: auto;
-    border-radius: 4px;
-}
-.logo-text {
-    font-weight: bold;
-    color: var(--p-white, #ffffff);
-    font-size: 1.2rem;
-}
+.logo-group { display: flex; align-items: center; text-decoration: none; gap: 10px; }
+.nav-icon { height: 40px; width: auto; border-radius: 4px; }
+.logo-text { font-weight: bold; color: var(--p-white, #ffffff); font-size: 1.2rem; }
 
-/* Dark mode filter for nav icon, if it's immediately visible */
 @media (prefers-color-scheme: dark) {
-    .nav-icon img {
-        filter: brightness(1.1) saturate(1.2) drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
-    }
+    .nav-icon img { filter: brightness(1.1) saturate(1.2) drop-shadow(0 0 5px rgba(255, 255, 255, 0.1)); }
 }
+
+/* CLS FIX FOR WELCOME CARD */
+.welcome-section { padding: 60px 20px; background-color: var(--bg-alt); min-height: 600px; display: flex; justify-content: center; }
+.welcome-card { background: #fff; padding: 40px; border-radius: 15px; text-align: center; width: 100%; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.home-hero-img { width: 350px; height: 350px; max-width: 80vw; border-radius: 50%; object-fit: cover; background: #eee; display: block; margin: 0 auto 20px; }
+#home-title { min-height: 2.2rem; margin: 10px 0; color: var(--p-green-alpine); font-weight: 800; font-size: 2.2rem; }
+#home-text { min-height: 100px; line-height: 1.6; font-size: 1.1rem; color: #333; }
 </style>
 
 <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
@@ -252,9 +159,9 @@ media="print" onload="this.media='all'">
 
 <section class="welcome-section">
     <div class="welcome-card" id="about-andrea">
-        <img id="home-image" src="" alt="Andrea Harwood" class="home-hero-img" width="350" height="350">
-        <h2 id="home-title">Loading Headline...</h2>
-        <p id="home-text">Loading welcome message...</p>
+        <img id="home-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Andrea Harwood" class="home-hero-img" width="350" height="350">
+                <h2 id="home-title">&nbsp;</h2>
+                <p id="home-text">&nbsp;</p>
         
        <a href="about.html" class="btn-green">Meet Andrea</a>
     </div>
